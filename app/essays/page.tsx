@@ -1,10 +1,8 @@
-import Link from 'next/link';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: '生活随笔 | 茶旅',
-  description: '转型心路、日常感悟，记录一个IT人的思考与成长',
-};
+import Link from 'next/link';
+import { useEffect } from 'react';
+import PageHeader from '@/components/PageHeader';
 
 const essays = [
   {
@@ -57,25 +55,45 @@ const essays = [
 const categories = ['全部', '转型心路', '日常感悟', '价值观'];
 
 export default function EssaysPage() {
-  return (
-    <div className="min-h-screen py-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-handwriting text-[#2A2624] mb-6">
-            生活随笔
-          </h1>
-          <p className="text-lg text-[#7A7674] max-w-xl mx-auto">
-            记录思考，分享感悟，寻找共鸣
-          </p>
-        </div>
+  // 滚动触发动画
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal');
 
-        {/* Quote */}
-        <div className="mb-16 p-8 bg-[#F0EBE3] rounded-2xl text-center border border-[#E0D8CC]">
-          <p className="text-[#4A4644] text-lg font-serif italic leading-relaxed">
-            "写作是一种整理思维的方式。当我把想法写下来，它们才真正属于我。"
-          </p>
-        </div>
+    const revealOnScroll = () => {
+      revealElements.forEach((el) => {
+        const elementTop = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (elementTop < windowHeight - 100) {
+          el.classList.add('active');
+        }
+      });
+    };
+
+    revealOnScroll();
+    window.addEventListener('scroll', revealOnScroll, { passive: true });
+    return () => window.removeEventListener('scroll', revealOnScroll);
+  }, []);
+
+  return (
+    <div>
+      <PageHeader
+        title="生活随笔"
+        englishTitle="Essays & Thoughts"
+        description="记录思考，分享感悟。在代码之外，寻找生活的变量与常量。"
+        image="/images/essays-header-gen.jpg"
+      />
+
+      {/* Content Section */}
+      <section className="py-20 px-6 bg-[#F6F2EB]">
+        <div className="max-w-4xl mx-auto">
+
+          {/* Quote */}
+          <div className="mb-12 p-6 bg-[#F0EBE3] rounded-2xl text-center border border-[#E0D8CC] reveal">
+            <p className="text-[#3A3634] text-lg font-serif italic leading-relaxed">
+              &ldquo;写作是一种整理思维的方式。当我把想法写下来，它们才真正属于我。&rdquo;
+            </p>
+          </div>
 
         {/* Categories */}
         <div className="mb-10 flex justify-center flex-wrap gap-3">
@@ -85,7 +103,7 @@ export default function EssaysPage() {
               className={`px-5 py-2 rounded-md text-sm transition-all tracking-wide ${
                 cat === '全部'
                   ? 'bg-[#6B7A68] text-white'
-                  : 'bg-white text-[#7A7674] border border-[#E0D8CC] hover:border-[#A69078] hover:text-[#A69078]'
+                  : 'bg-white text-[#5A5654] border border-[#E0D8CC] hover:border-[#A69078] hover:text-[#A69078]'
               }`}
             >
               {cat}
@@ -99,7 +117,7 @@ export default function EssaysPage() {
             <Link
               key={essay.path}
               href={essay.path}
-              className="block group"
+              className="block group reveal"
             >
               <article className="card overflow-hidden">
                 <div className="md:flex">
@@ -117,10 +135,10 @@ export default function EssaysPage() {
                       </span>
                       <span className="text-xs text-[#A6A2A0]">{essay.date}</span>
                     </div>
-                    <h2 className="text-xl font-serif mb-2 group-hover:text-[#A69078] transition-colors text-[#2A2624]">
+                    <h2 className="text-xl font-serif mb-2 group-hover:text-[#A69078] transition-colors text-[#1A1816]">
                       {essay.title}
                     </h2>
-                    <p className="text-[#7A7674] leading-relaxed line-clamp-2">
+                    <p className="text-[#5A5654] leading-relaxed line-clamp-2">
                       {essay.excerpt}
                     </p>
                   </div>
@@ -130,6 +148,7 @@ export default function EssaysPage() {
           ))}
         </div>
       </div>
+      </section>
     </div>
   );
 }

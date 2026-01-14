@@ -1,7 +1,35 @@
 import type { Metadata } from "next";
+import { Noto_Serif_SC, Noto_Sans_SC, Ma_Shan_Zheng } from 'next/font/google';
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { cn } from "@/lib/utils";
+
+// 配置字体
+const notoSerifSC = Noto_Serif_SC({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+  // 注意：Google Fonts 的 SC 子集可能需要 preload: false，如果 Next.js 报错再调整
+  preload: false, 
+});
+
+const notoSansSC = Noto_Sans_SC({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+  preload: false,
+});
+
+const maShanZheng = Ma_Shan_Zheng({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-handwriting',
+  display: 'swap',
+  preload: false,
+});
 
 export const metadata: Metadata = {
   title: "茶旅 | IT人的茶生活",
@@ -15,10 +43,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
-      <body className="antialiased">
+    <html lang="zh-CN" className={`${notoSerifSC.variable} ${notoSansSC.variable} ${maShanZheng.variable}`}>
+      <body className={cn(
+        "antialiased bg-[#F6F2EB] text-[#2A2624]",
+        // 默认使用无衬线体，标题显式使用 serif
+        "font-sans" 
+      )}>
         <Navigation />
-        <main className="pt-16">
+        <main className="pt-16 min-h-screen">
           {children}
         </main>
         <Footer />

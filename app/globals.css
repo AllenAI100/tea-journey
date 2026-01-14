@@ -1,13 +1,9 @@
-/* 手写字体 - 从 Google Fonts CDN 导入 */
-@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
-/* 思源宋体 - 更好的衬线字体 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --font-handwriting: "Ma Shan Zheng", "Songti SC", cursive;
+  --font-serif: var(--font-serif), "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-handwriting: var(--font-handwriting), "Ma Shan Zheng", "Songti SC", cursive;
 }
 
 /* =====================================================
@@ -15,36 +11,40 @@
    ===================================================== */
 
 :root {
-  /* ----- 主色 - 温暖的茶棕绿 ----- */
-  --primary: #6B7A68;           /* 暖调橄榄绿 */
-  --primary-light: #8A9B87;     /* 浅色版 */
-  --primary-dark: #4A5848;      /* 深色版 */
+  /* 主色 - 更鲜活的茶绿色 */
+  --primary: #4A8B6B;
+  --primary-light: #5FA380;
+  --primary-dark: #3A6B53;
 
-  /* ----- 茶色渐变 - 核心配色 ----- */
-  --tea-cream: #E8DFD2;         /* 奶茶色 - 浅背景 */
-  --tea-warm: #D4C8B5;          /* 暖茶色 - 中背景 */
-  --tea-brown: #A69078;         /* 茶褐 - 主要强调 */
-  --tea-deep: #6B5A48;          /* 深茶色 - 深色元素 */
+  /* 茶色渐变 - 核心配色 */
+  --tea-cream: #E8DFD2;
+  --tea-warm: #D4C8B5;
+  --tea-brown: #D4A853;
+  --tea-deep: #8B755D;
 
-  /* ----- 背景色 - 温暖纸张感 ----- */
-  --bg-main: #F6F2EB;           /* 主背景 - 暖白偏黄 */
-  --bg-soft: #F0EBE3;           /* 柔和背景 */
-  --bg-warm: #E8E2D8;           /* 暖色区块 */
+  /* 背景色 - 温暖纸张感 */
+  --bg-main: #F6F2EB;
+  --bg-soft: #F0EBE3;
+  --bg-warm: #E8E2D8;
 
-  /* ----- 文字色 - 确保可读性 ----- */
-  --text-main: #2A2624;         /* 主要文字 - 暖黑 */
-  --text-body: #4A4644;         /* 正文文字 */
-  --text-light: #7A7674;        /* 次要文字 */
-  --text-faint: #A6A2A0;        /* 弱化文字 */
+  /* 文字色 - 确保可读性 */
+  --text-main: #1A1816;
+  --text-body: #2A2624;
+  --text-light: #5A5654;
+  --text-faint: #8A8690;
 
-  /* ----- 点缀色 ----- */
-  --accent-gold: #C9A85C;       /* 金色 - 高亮 */
-  --accent-coral: #C97A6C;      /* 珊瑚暖红 - 按钮/CTA */
-  --accent-sage: #A8B8A8;       /* 鼠尾草绿 - 柔和点缀 */
+  /* 点缀色 */
+  --accent-gold: #D4A853;
+  --accent-coral: #E85D04;
+  --accent-sage: #8A9B87;
 
-  /* ----- UI 元素 ----- */
-  --border-color: #E0D8CC;      /* 边框 */
-  --card-bg: #FFFFFF;           /* 卡片背景 */
+  /* UI 元素 */
+  --border-color: #E0D8CC;
+  --card-bg: #FFFFFF;
+
+  /* CTA 颜色 - 更醒目的橙红色 */
+  --cta-primary: #E85D04;
+  --cta-hover: #D14D03;
 }
 
 * {
@@ -58,6 +58,7 @@ html {
 body {
   background: var(--bg-main);
   color: var(--text-body);
+  /* 使用 Next.js 注入的字体变量 */
   font-family: var(--font-sans);
   line-height: 1.85;
   letter-spacing: 0.015em;
@@ -66,16 +67,12 @@ body {
 }
 
 /* =====================================================
-   排版系统
-   ===================================================== */
-
-/* =====================================================
-   手写书法风格 - 与茶文化的完美契合
+   排版系统 - 手写书法风格
    ===================================================== */
 
 h1, h2, h3 {
-  /* 所有主要标题使用手写书法风格 */
-  font-family: var(--font-handwriting), var(--font-serif);
+  /* 优先使用 Serif */
+  font-family: var(--font-serif);
   font-weight: 400;
   color: var(--text-main);
   line-height: 1.3;
@@ -92,23 +89,22 @@ h1 {
   font-size: 3rem;
   margin-top: 2.5em;
   margin-bottom: 1em;
-  letter-spacing: 0.15em;
-  /* 模拟墨迹的轻微不规则感 */
-  text-shadow: 0 0 1px rgba(42, 38, 36, 0.1);
+  letter-spacing: 0.05em; /* 调整字间距，衬线体不需要太大 */
+  text-shadow: 0 0 1px rgba(26, 24, 22, 0.1);
 }
 
 h2 {
   font-size: 2rem;
   margin-top: 2em;
   margin-bottom: 0.8em;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.05em;
 }
 
 h3 {
   font-size: 1.5rem;
   margin-top: 1.5em;
   margin-bottom: 0.6em;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
 }
 
 h4 {
@@ -133,23 +129,90 @@ a:hover {
 }
 
 /* =====================================================
-   Hero 背景 - 茶山意境
+   装饰性元素
    ===================================================== */
 
-.hero-bg {
-  background-image: linear-gradient(
-      to bottom,
-      rgba(246, 242, 235, 0.4),
-      rgba(246, 242, 235, 0.6)
-    ),
-    url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=1920&q=80');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+/* 装饰性边框 */
+.decorative-border {
+  position: relative;
+}
+
+.decorative-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--border-color);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* 双层边框效果 */
+.double-border {
+  position: relative;
+  padding: 4px;
+}
+
+.double-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--tea-brown);
+  opacity: 0.3;
+  border-radius: inherit;
+}
+
+.double-border::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--tea-brown);
+  opacity: 0.15;
+  border-radius: calc(inherit - 4px);
+}
+
+/* 角落装饰 */
+.corner-accent {
+  position: relative;
+}
+
+.corner-accent::before,
+.corner-accent::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--tea-brown);
+  border-style: solid;
+  opacity: 0.4;
+}
+
+.corner-accent::before {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+  border-radius: 4px 0 0 0;
+}
+
+.corner-accent::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+  border-radius: 0 0 4px 0;
+}
+
+/* 竖式分割线 */
+.vertical-divider {
+  width: 1px;
+  background: linear-gradient(to bottom,
+    transparent,
+    var(--border-color) 20%,
+    var(--border-color) 80%,
+    transparent
+  );
 }
 
 /* =====================================================
-   纸张纹理
+   纸张纹理与背景
    ===================================================== */
 
 .paper-texture {
@@ -162,93 +225,183 @@ a:hover {
   );
 }
 
+/* 噪点纹理 */
+.grain-texture {
+  position: relative;
+}
+
+.grain-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* 渐变背景 */
+.warm-gradient {
+  background: linear-gradient(135deg,
+    var(--bg-main) 0%,
+    var(--bg-soft) 50%,
+    var(--bg-warm) 100%
+  );
+}
+
 /* =====================================================
-   卡片样式
+   卡片样式 - 更精致
    ===================================================== */
 
 .card {
   background: var(--card-bg);
-  border-radius: 8px;
-  transition: all 0.4s ease;
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid var(--border-color);
-  box-shadow: 0 2px 16px rgba(107, 90, 72, 0.08);
+  box-shadow:
+    0 1px 3px rgba(107, 90, 72, 0.04),
+    0 4px 12px rgba(107, 90, 72, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 卡片内发光效果 */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(255, 255, 255, 0.8),
+    transparent 60%
+  );
+  pointer-events: none;
 }
 
 .card:hover {
-  box-shadow: 0 8px 32px rgba(107, 90, 72, 0.12);
-  transform: translateY(-2px);
+  box-shadow:
+    0 2px 6px rgba(107, 90, 72, 0.06),
+    0 12px 32px rgba(107, 90, 72, 0.12);
+  transform: translateY(-4px);
   border-color: var(--tea-brown);
 }
 
+/* 卡片内容渐现 */
+.card-content {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .card-content {
+  transform: scale(1.02);
+}
+
 /* =====================================================
-   按钮样式
+   按钮样式 - 更精致的交互
    ===================================================== */
 
 .btn-primary {
   background: var(--primary);
   color: white;
-  padding: 12px 32px;
-  border-radius: 4px;
+  padding: 14px 36px;
+  border-radius: 6px;
   font-weight: 500;
   letter-spacing: 0.08em;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-block;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(107, 122, 104, 0.2);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-primary:hover::before {
+  transform: translateX(100%);
 }
 
 .btn-primary:hover {
   background: var(--primary-light);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(107, 122, 104, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(107, 122, 104, 0.3);
   color: white;
 }
 
 .btn-secondary {
   background: white;
   color: var(--text-main);
-  padding: 12px 32px;
-  border-radius: 4px;
+  padding: 14px 36px;
+  border-radius: 6px;
   font-weight: 500;
   border: 1px solid var(--border-color);
   letter-spacing: 0.08em;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-block;
+  box-shadow: 0 2px 6px rgba(107, 90, 72, 0.06);
 }
 
 .btn-secondary:hover {
   background: var(--bg-soft);
   border-color: var(--tea-brown);
   color: var(--tea-brown);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(107, 90, 72, 0.1);
 }
 
 .btn-coral {
   background: var(--accent-coral);
   color: white;
-  padding: 12px 32px;
-  border-radius: 4px;
+  padding: 14px 36px;
+  border-radius: 6px;
   font-weight: 500;
   letter-spacing: 0.08em;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-block;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(201, 122, 108, 0.25);
+}
+
+.btn-coral::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-coral:hover::before {
+  transform: translateX(100%);
 }
 
 .btn-coral:hover {
   background: #B56A5C;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(201, 122, 108, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 122, 108, 0.35);
   color: white;
-}
-
-/* =====================================================
-   手写字体 - 与茶文化的完美契合
-   ===================================================== */
-
-.font-handwriting {
-  font-family: var(--font-handwriting), cursive;
 }
 
 /* =====================================================
    实用工具类
    ===================================================== */
+
+.font-handwriting {
+  font-family: var(--font-handwriting), cursive;
+}
 
 .text-primary { color: var(--primary); }
 .text-tea-brown { color: var(--tea-brown); }
@@ -263,7 +416,6 @@ a:hover {
 
 .border-tea { border-color: var(--border-color); }
 
-/* 柔和阴影 */
 .warm-shadow {
   box-shadow: 0 4px 24px rgba(107, 90, 72, 0.1);
 }
@@ -271,11 +423,12 @@ a:hover {
 /* 标签/分类样式 */
 .tag {
   display: inline-block;
-  padding: 4px 12px;
-  border-radius: 4px;
+  padding: 6px 14px;
+  border-radius: 6px;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 .tag-tea {
@@ -296,22 +449,84 @@ a:hover {
   border: 1px solid rgba(107, 122, 104, 0.2);
 }
 
-/* 分隔线 */
+/* 分隔线 - 更精致 */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
-  margin: 3rem 0;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--tea-brown) 20%,
+    var(--tea-brown) 50%,
+    var(--tea-brown) 80%,
+    transparent
+  );
+  margin: 4rem auto;
+  max-width: 200px;
 }
 
 /* 引用样式 */
 .blockquote {
   border-left: 3px solid var(--tea-brown);
-  background: linear-gradient(90deg, rgba(166, 144, 120, 0.08), transparent);
+  background: linear-gradient(90deg,
+    rgba(166, 144, 120, 0.08),
+    transparent
+  );
   padding: 1.5rem;
   margin: 2rem 0;
   font-style: italic;
   color: var(--text-body);
   border-radius: 0 8px 8px 0;
+  position: relative;
+}
+
+.blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-size: 3rem;
+  color: var(--tea-brown);
+  opacity: 0.2;
+  font-family: var(--font-serif);
+  line-height: 1;
+}
+
+/* =====================================================
+   图片悬停效果
+   ===================================================== */
+
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* 图片遮罩效果 */
+.img-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(26, 24, 22, 0.6) 0%,
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.img-overlay:hover::after {
+  opacity: 1;
 }
 
 /* =====================================================
@@ -322,10 +537,6 @@ a:hover {
   h1 { font-size: 2.25rem; }
   h2 { font-size: 1.75rem; }
   h3 { font-size: 1.25rem; }
-
-  .hero-bg {
-    background-attachment: scroll;
-  }
 }
 
 /* 行数限制 */
@@ -341,4 +552,68 @@ a:hover {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* =====================================================
+   Navigation 样式增强
+   ===================================================== */
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.3;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.nav-link:hover::after {
+  width: calc(100% - 1.5rem);
+}
+
+.nav-underline {
+  animation: expandWidth 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 1.5rem; }
+}
+
+/* =====================================================
+   Footer 样式增强
+   ===================================================== */
+
+.footer-link {
+  position: relative;
+  transform: translateX(0);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #A69078;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-link:hover {
+  transform: translateX(4px);
+}
+
+.footer-link:hover::after {
+  width: 100%;
 }

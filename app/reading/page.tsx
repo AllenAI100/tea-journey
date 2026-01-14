@@ -1,10 +1,9 @@
-import Link from 'next/link';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: '读书笔记 | 茶旅',
-  description: '商业、创业、茶文化、哲学、文学与生活，用技术人的视角梳理思维脉络',
-};
+import Link from 'next/link';
+import Image from 'next/image';
+import { useEffect } from 'react';
+import PageHeader from '@/components/PageHeader';
 
 const books = [
   {
@@ -62,18 +61,38 @@ const books = [
 const categories = ['全部', '商业/创业', '茶文化/健康', '哲学/思考', '文学/生活'];
 
 export default function ReadingPage() {
+  // 滚动触发动画
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealOnScroll = () => {
+      revealElements.forEach((el) => {
+        const elementTop = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (elementTop < windowHeight - 100) {
+          el.classList.add('active');
+        }
+      });
+    };
+
+    revealOnScroll();
+    window.addEventListener('scroll', revealOnScroll, { passive: true });
+    return () => window.removeEventListener('scroll', revealOnScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-handwriting text-[#2A2624] mb-6">
-            读书笔记
-          </h1>
-          <p className="text-lg text-[#7A7674] max-w-2xl mx-auto">
-            用技术人的视角阅读，梳理思维脉络，连接书本与生活
-          </p>
-        </div>
+    <div>
+      <PageHeader
+        title="读书笔记"
+        englishTitle="Reading Notes"
+        description="用技术人的视角阅读，梳理思维脉络，连接书本与生活。"
+        image="/images/reading-header-gen.jpg"
+      />
+
+      {/* Content Section */}
+      <section className="py-20 px-6 bg-[#F6F2EB]">
+        <div className="max-w-6xl mx-auto">
 
         {/* Categories */}
         <div className="mb-12 flex justify-center flex-wrap gap-3">
@@ -83,7 +102,7 @@ export default function ReadingPage() {
               className={`px-5 py-2 rounded-md text-sm transition-all tracking-wide ${
                 cat === '全部'
                   ? 'bg-[#6B7A68] text-white'
-                  : 'bg-white text-[#7A7674] border border-[#E0D8CC] hover:border-[#A69078] hover:text-[#A69078]'
+                  : 'bg-white text-[#5A5654] border border-[#E0D8CC] hover:border-[#A69078] hover:text-[#A69078]'
               }`}
             >
               {cat}
@@ -97,7 +116,7 @@ export default function ReadingPage() {
             <Link
               key={book.path}
               href={book.path}
-              className="group"
+              className="group reveal"
             >
               <article className="card h-full overflow-hidden">
                 <div className="aspect-[3/2] overflow-hidden bg-[#D4C8B5]">
@@ -111,11 +130,11 @@ export default function ReadingPage() {
                   <span className="text-xs uppercase tracking-widest text-[#A69078]">
                     {book.category}
                   </span>
-                  <h2 className="text-lg font-serif mt-2 mb-1 group-hover:text-[#A69078] transition-colors text-[#2A2624]">
+                  <h2 className="text-lg font-serif mt-2 mb-1 group-hover:text-[#A69078] transition-colors text-[#1A1816]">
                     {book.title}
                   </h2>
-                  <p className="text-sm text-[#A6A2A0] mb-3">{book.author}</p>
-                  <p className="text-sm text-[#7A7674] leading-relaxed line-clamp-2">
+                  <p className="text-sm text-[#8A8690] mb-3">{book.author}</p>
+                  <p className="text-sm text-[#5A5654] leading-relaxed line-clamp-2">
                     {book.excerpt}
                   </p>
                 </div>
@@ -124,6 +143,7 @@ export default function ReadingPage() {
           ))}
         </div>
       </div>
+      </section>
     </div>
   );
 }
