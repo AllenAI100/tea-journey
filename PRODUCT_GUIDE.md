@@ -15,6 +15,10 @@
 *   **做茶日常 (Tea Making)**: 记录制茶、评茶的过程，强调对感官（味觉、嗅觉）的重新唤醒。
 *   **阅读与思考 (Reading & Thinking)**: 分享人文、哲学、商业类书籍的阅读感悟。
 *   **生活哲学 (Life Philosophy)**: 关于"慢下来"、"独处"、"选择权"的深度思考。
+*   **播客节目 (Podcast)**: 
+    *   **定位**: 声音版的“慢生活”记录，强调陪伴感与沉浸感。
+    *   **栏目名**: 《茶与白噪音》 (Tea & White Noise)。
+    *   **形式**: 深度对谈、声音纪录片（ASMR）、个人独白。
 
 ### ⚠️ 限制的内容 (Constraints)
 *   **技术/代码 (Tech/Code)**: 
@@ -32,6 +36,15 @@
 ### 交互体验 (UX)
 *   **沉浸式阅读**: 没有任何干扰阅读的弹窗或复杂的 Dashboard。
 *   **情感化**: 交互动效应该是舒缓的 (Ease-out)、柔和的，模拟水流或烟雾的质感，而非机械的弹跳。
+
+## 4. 技术架构备忘 (Tech Stack Notes)
+
+### 播客系统 (Podcast System)
+*   **当前方案 (v1.1)**: "MDX-like" 静态数据驱动。
+    *   数据源: `lib/podcast-data.ts` (Mock Data)。
+    *   播放器: 自研 `AudioPlayer` 组件 (HTML5 Audio)。
+    *   详情页: `app/podcast/[slug]/page.tsx` 动态路由。
+*   **未来规划 (Roadmap)**: 迁移至 Contentlayer 或 RSS 自动化抓取。
 
 ---
 
