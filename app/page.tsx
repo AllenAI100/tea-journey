@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center text-center px-6 overflow-hidden grain-texture">
+      <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center text-center px-6 overflow-hidden">
         {/* 背景层 */}
         <div className="absolute inset-0 z-0">
           <motion.div 
@@ -81,16 +81,16 @@ export default function Home() {
           >
             
           <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl lg:text-9xl mb-6 font-serif tracking-tight text-[#2C2824]">
-            茶 <span className="text-[#A69078] font-light">×</span> 代码
+            茶 <span className="text-[#A69078] font-light">&</span> 旅
           </motion.h1>
           
           <motion.div variants={fadeInUp} className="flex flex-col gap-2 mb-10">
             <p className="text-xl md:text-2xl text-[#3A3634] font-light tracking-wide">
-              记录从<span className="font-normal text-[#1A1816] border-b border-[#A69078]/50 pb-1">科技圈</span>
-              到<span className="font-normal text-[#1A1816] border-b border-[#A69078]/50 pb-1">茶山</span>的跨界人生
+              从代码世界回归<span className="font-normal text-[#1A1816] border-b border-[#A69078]/50 pb-1">山野</span>
+              的探索手记
             </p>
             <p className="text-sm md:text-base text-[#5A5654] font-light tracking-widest uppercase opacity-80 mt-2 font-sans">
-              Documenting the journey from <br className="md:hidden"/>tech world to tea mountains
+              A journey from tech world to tea mountains
             </p>
           </motion.div>
           
@@ -126,7 +126,7 @@ export default function Home() {
       </section>
 
       {/* Philosophy / Intro */}
-      <section className="py-24 px-6 bg-[#F6F2EB] grain-texture">
+      <section className="py-24 px-6 bg-[#F6F2EB]">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -141,15 +141,15 @@ export default function Home() {
             <p className="text-lg text-[#5A5654] leading-relaxed mx-auto max-w-[65ch] font-light">
               在快节奏的科技世界穿行多年后，我选择放慢脚步，走进云南古老的茶山。
               <br/><br/>
-              这里没有即时的 <code className="bg-[#E6E0D6] px-1 py-0.5 rounded text-sm text-[#1A1816]">return</code>，只有需要耐心等待的 <span className="italic font-serif">Fermentation</span>（发酵）。
-              TeaJourney 是我用代码逻辑解构东方树叶的实验记录，也是我重新理解生活的思考笔记。
+              这里没有即时的 <span className="italic font-serif">Response</span>，只有需要耐心等待的 <span className="italic font-serif">Fermentation</span>（发酵）。
+              TeaJourney 是我从技术思维转身，重新理解生活温度的实验记录。
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Featured Articles */}
-      <section className="py-24 px-6 bg-white grain-texture">
+      <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 px-2">
             <motion.div
@@ -223,7 +223,7 @@ export default function Home() {
       </section>
 
       {/* Exploration Categories */}
-      <section className="py-24 px-6 bg-[#F0EBE3] grain-texture">
+      <section className="py-24 px-6 bg-[#F0EBE3]">
         <div className="max-w-5xl mx-auto">
           <motion.div 
             className="text-center mb-16"

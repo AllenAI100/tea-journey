@@ -6,38 +6,37 @@ const events = [
   {
     year: '2014',
     title: 'Hello World',
-    desc: '写下了第一行代码。从此以为世界只有 0 和 1。',
-    side: 'left'
-  },
-  {
-    year: '2016',
-    title: '全栈工程师',
-    desc: '在北上广的写字楼里，见过每一座城市的凌晨四点。',
-    side: 'left'
+    desc: '写下了第一行代码。那时以为技术是改变世界的唯一杠杆，在逻辑的迷宫里乐此不疲。',
+    side: 'left',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80' // Coding setup
   },
   {
     year: '2019',
-    title: '架构师的瓶颈',
-    desc: '系统越来越复杂，快乐却越来越少。开始思考技术的边界。',
-    side: 'left'
+    title: '内心的转向',
+    desc: '在城市的高速运转中感到疲惫。开始反思：除了效率和增长，生活是否还有另一种可能？',
+    side: 'left',
+    image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80' // City night
   },
   {
     year: '2021',
-    title: '遇见单丛',
-    desc: '一次偶然的潮州之行。被一杯鸭屎香的香气击中，那是代码无法编译出的感动。',
-    side: 'right'
+    title: '初遇',
+    desc: '一次偶然的潮州之行。被一杯鸭屎香的香气击中，那是无需编译、直抵人心的感动。',
+    side: 'right',
+    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&q=80' // Tea pouring
   },
   {
     year: '2023',
-    title: '茶山游学',
-    desc: '深入云南与福建茶山。向老茶农学习看天做茶。',
-    side: 'right'
+    title: '归零',
+    desc: '辞去工作，背起行囊。深入云南与福建茶山，向老茶农学习看天做茶，重新做回学生。',
+    side: 'right',
+    image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=600&q=80' // Tea mountain
   },
   {
     year: '2024',
-    title: '创立茶旅',
-    desc: '试图融合两者。用理性的工具，去探索感性的生活。',
-    side: 'center'
+    title: 'Tea Journey',
+    desc: '创立茶旅。不再寻找标准答案，而是开始享受探索本身。',
+    side: 'center',
+    image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&q=80' // Tea table
   },
 ];
 
@@ -64,8 +63,17 @@ export default function Timeline() {
                 } ${event.side === 'center' ? 'flex-col !justify-center text-center' : ''}`}
               >
                 {/* 内容块 */}
-                <div className={`w-full md:w-[45%] ${event.side === 'center' ? 'md:w-full z-10 bg-[#F6F2EB] py-8' : ''}`}>
-                  <div className={`bg-white p-6 md:p-8 rounded-xl shadow-md border border-[#F0EBE3] ${event.side === 'center' ? 'max-w-xl mx-auto border-[#A69078] shadow-lg' : ''}`}>
+                <div className={`w-full md:w-[45%] ${event.side === 'center' ? 'md:w-full z-10 py-8' : ''}`}>
+                  <div className={`bg-white p-5 md:p-6 rounded-xl shadow-md border border-[#F0EBE3] hover:shadow-lg transition-shadow duration-300 ${event.side === 'center' ? 'max-w-xl mx-auto border-[#A69078] shadow-lg' : ''}`}>
+                    {/* 图片区域 */}
+                    <div className="mb-4 overflow-hidden rounded-lg aspect-[3/2]">
+                      <img 
+                        src={event.image} 
+                        alt={event.title}
+                        className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    </div>
+                    
                     <span className="text-[#A69078] font-bold text-lg block mb-2 font-serif">{event.year}</span>
                     <h3 className="text-xl font-bold mb-3 text-[#1A1816]">{event.title}</h3>
                     <p className="text-[#5A5654] text-sm leading-relaxed">{event.desc}</p>

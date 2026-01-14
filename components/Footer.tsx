@@ -13,29 +13,22 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
           
-          {/* 1. Brand Section (占 5/12) */}
           <div className="md:col-span-5 flex flex-col items-start">
             <Link href="/" className="flex items-center gap-3 mb-6 group">
-              <div className="relative w-10 h-10 flex items-center justify-center">
-                 {/* 同步 Navigation 的 Logo 样式 */}
-                 <div className="absolute inset-0 bg-[#A69078]/10 blur-lg rounded-full scale-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative w-32 h-10 flex items-center justify-start">
                  <Image
-                    src="/images/logo.png"
+                    src="/images/new_logo.png"
                     alt="茶旅 Logo"
-                    width={40}
-                    height={40}
-                    className="object-contain mix-blend-multiply opacity-90 sepia-[.2] contrast-125"
+                    fill
+                    className="object-contain object-left"
                   />
               </div>
-              <span className="text-xl font-serif text-[#1A1816] tracking-wide">
-                茶旅 <span className="text-[#A69078] text-sm align-top">TeaJourney</span>
-              </span>
             </Link>
             
             <p className="text-[#5A5654] text-sm leading-7 max-w-sm font-light mb-8">
-              Documenting the journey from tech world to tea mountains.
+              A journey from tech world to tea mountains.
               <br/>
-              这里没有玄学，只有被量化的温度、时间，以及在此之上绽放的风味。
+              记录从代码世界回归山野的旅程。在慢下来的时光里，重新发现生活的温度。
             </p>
 
             <div className="flex gap-4">

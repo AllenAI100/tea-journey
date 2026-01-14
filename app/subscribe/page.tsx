@@ -1,9 +1,7 @@
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: '订阅 | 茶旅',
-  description: '订阅更新，一起探索茶、书与生活的可能性',
-};
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function SubscribePage() {
   return (

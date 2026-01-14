@@ -1,149 +1,85 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useEffect } from 'react';
+import React from 'react';
+import Navigation from '@/components/Navigation';
 import PageHeader from '@/components/PageHeader';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
-const books = [
+const readingList = [
   {
-    title: '《茶之书》',
-    author: '冈仓天三',
-    category: '茶文化/健康',
-    date: '2025-01-05',
-    excerpt: '茶道之于东方，如雕塑之于希腊，哥特式建筑之于欧洲。它是东方美学的结晶，是一种生活哲学的体现...',
-    keyPoints: ['茶道与禅宗的关联', '茶室的空间美学', '一期一会的哲学'],
+    title: '《茶之书》笔记：东方美学的现代解读',
+    excerpt: '冈仓天三的茶道哲学，在百年后的今天依然能给我们关于生活美学的启发...',
+    date: '2024.03.15',
     path: '/reading/book-of-tea',
-    image: 'https://images.unsplash.com/photo-1507048945892-ff6b5b762619?w=800&q=80',
+    category: '茶文化/健康'
   },
   {
     title: '《思考，快与慢》',
-    author: '丹尼尔·卡尼曼',
-    category: '哲学/思考',
-    date: '2024-12-28',
     excerpt: '人类的思维有两套系统：快思考依赖直觉，慢思考依赖理性。了解它们如何工作，我们能做出更明智的决策...',
-    keyPoints: ['系统1与系统2', '锚定效应与偏见', '如何在生活中应用'],
+    date: '2024-12-28',
     path: '/reading/thinking-fast-slow',
-    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=80',
-  },
-  {
-    title: '《从0到1》',
-    author: '彼得·蒂尔',
-    category: '商业/创业',
-    date: '2024-12-20',
-    excerpt: '从0到1是创新，从1到N是复制。在创业做茶的过程中，我对书中的很多观点有了新的理解...',
-    keyPoints: ['垄断与竞争', '幂次法则', '特立独行的价值'],
-    path: '/reading/zero-to-one',
-    image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=800&q=80',
+    category: '哲学/思考'
   },
   {
     title: '《瓦尔登湖》',
-    author: '亨利·梭罗',
-    category: '文学/生活',
-    date: '2024-12-15',
     excerpt: '梭罗在瓦尔登湖畔的两年，是对简单生活的实践。做茶之后，我更能理解那种远离喧嚣、回归本真的选择...',
-    keyPoints: ['极简生活的意义', '与自然的关系', '时间的价值'],
+    date: '2024-12-15',
     path: '/reading/walden',
-    image: 'https://images.unsplash.com/photo-1448375240586-dfd8d395ea6c?w=800&q=80',
-  },
-  {
-    title: '《中国茶文化》',
-    author: '陈宗懋',
-    category: '茶文化/健康',
-    date: '2024-12-10',
-    excerpt: '系统了解中国茶的历史、种类与冲泡方法。这是我转行做茶的入门书籍，也是我经常翻阅的参考书...',
-    keyPoints: ['六大茶类的区别', '茶的冲泡要领', '茶与健康的关系'],
-    path: '/reading/chinese-tea-culture',
-    image: 'https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?w=800&q=80',
-  },
+    category: '文学/生活'
+  }
 ];
 
-const categories = ['全部', '商业/创业', '茶文化/健康', '哲学/思考', '文学/生活'];
-
 export default function ReadingPage() {
-  // 滚动触发动画
-  useEffect(() => {
-    const revealElements = document.querySelectorAll('.reveal');
-
-    const revealOnScroll = () => {
-      revealElements.forEach((el) => {
-        const elementTop = el.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-
-        if (elementTop < windowHeight - 100) {
-          el.classList.add('active');
-        }
-      });
-    };
-
-    revealOnScroll();
-    window.addEventListener('scroll', revealOnScroll, { passive: true });
-    return () => window.removeEventListener('scroll', revealOnScroll);
-  }, []);
-
   return (
-    <div>
+    <div className="min-h-screen bg-[#F6F2EB]">
+      <Navigation />
+      
       <PageHeader
         title="读书笔记"
         englishTitle="Reading Notes"
-        description="用技术人的视角阅读，梳理思维脉络，连接书本与生活。"
-        image="/images/reading-header-gen.jpg"
+        description="在字里行间，寻找生活的注脚。阅读不是为了获取信息，而是为了唤醒思考。"
+        image="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600&q=80" // 书堆与眼镜
       />
 
-      {/* Content Section */}
-      <section className="py-20 px-6 bg-[#F6F2EB]">
-        <div className="max-w-6xl mx-auto">
-
-        {/* Categories */}
-        <div className="mb-12 flex justify-center flex-wrap gap-3">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`px-5 py-2 rounded-md text-sm transition-all tracking-wide ${
-                cat === '全部'
-                  ? 'bg-[#6B7A68] text-white'
-                  : 'bg-white text-[#5A5654] border border-[#E0D8CC] hover:border-[#A69078] hover:text-[#A69078]'
-              }`}
+      <main className="max-w-4xl mx-auto px-6 py-16 -mt-10 relative z-30">
+        <div className="grid gap-8">
+          {readingList.map((post, index) => (
+            <motion.div
+              key={post.path}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
             >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Book Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {books.map((book) => (
-            <Link
-              key={book.path}
-              href={book.path}
-              className="group reveal"
-            >
-              <article className="card h-full overflow-hidden">
-                <div className="aspect-[3/2] overflow-hidden bg-[#D4C8B5]">
-                  <img
-                    src={book.image}
-                    alt={book.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-                <div className="p-6">
-                  <span className="text-xs uppercase tracking-widest text-[#A69078]">
-                    {book.category}
-                  </span>
-                  <h2 className="text-lg font-serif mt-2 mb-1 group-hover:text-[#A69078] transition-colors text-[#1A1816]">
-                    {book.title}
+              <Link href={post.path} className="group block">
+                <article className="bg-white p-8 rounded-2xl border border-[#E0D8CC] hover:border-[#A69078]/50 hover:shadow-lg hover:shadow-[#A69078]/5 transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-xs uppercase tracking-widest text-[#A69078] font-bold">
+                      {post.category}
+                    </span>
+                    <span className="h-px w-4 bg-[#E0D8CC]"></span>
+                    <span className="text-sm text-[#8A8690] font-serif italic">{post.date}</span>
+                  </div>
+                  
+                  <h2 className="text-2xl font-serif mb-3 text-[#1A1816] group-hover:text-[#A69078] transition-colors">
+                    {post.title}
                   </h2>
-                  <p className="text-sm text-[#8A8690] mb-3">{book.author}</p>
-                  <p className="text-sm text-[#5A5654] leading-relaxed line-clamp-2">
-                    {book.excerpt}
+                  <p className="text-[#5A5654] leading-relaxed font-light mb-6 line-clamp-2">
+                    {post.excerpt}
                   </p>
-                </div>
-              </article>
-            </Link>
+                  
+                  <div className="flex items-center text-[#1A1816] font-medium group-hover:text-[#A69078] transition-colors">
+                    <span className="text-sm tracking-wide">阅读全文</span>
+                    <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </article>
+              </Link>
+            </motion.div>
           ))}
         </div>
-      </div>
-      </section>
+      </main>
     </div>
   );
 }

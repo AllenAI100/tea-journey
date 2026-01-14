@@ -35,9 +35,9 @@ export default function ProfileHero() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="text-xl md:text-2xl text-[#5A5654] font-light max-w-2xl mx-auto leading-relaxed"
         >
-          曾经构建 <span className="font-mono text-sm bg-[#E0E0E0] px-2 py-1 rounded text-[#333]">Distributed Systems</span>，
+          曾试图用逻辑重构世界，
           <br className="md:hidden" />
-          现在构建 <span className="font-serif italic text-[#A69078]">生活方式</span>。
+          现在，我选择用<span className="font-serif italic text-[#A69078] mx-2">茶汤</span>温暖生活。
         </motion.p>
       </div>
 

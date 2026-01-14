@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className={`${notoSerifSC.variable} ${notoSansSC.variable} ${maShanZheng.variable}`}>
       <body className={cn(
-        "antialiased bg-[#F6F2EB] text-[#2A2624]",
+        "antialiased bg-[#F6F2EB] text-[#2A2624] grain-texture",
         // 默认使用无衬线体，标题显式使用 serif
         "font-sans" 
       )}>
