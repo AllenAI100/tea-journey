@@ -25,6 +25,7 @@ export default function Navigation() {
     { name: '读书', path: '/reading' },
     { name: '随笔', path: '/essays' },
     { name: '做茶', path: '/tea-journal' },
+    { name: '播客', path: '/podcast' }, // 新增入口
     { name: '关于', path: '/about' },
   ];
 
