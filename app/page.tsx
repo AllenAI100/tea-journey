@@ -63,7 +63,7 @@ export default function Home() {
               src="/images/tea-mountain.jpg"
               alt="茶山远景"
               fill
-              className="object-cover"
+              className="object-cover animate-image-fade"
               priority
               quality={90}
             />

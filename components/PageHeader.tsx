@@ -27,7 +27,7 @@ export default function PageHeader({
           src={image}
           alt={title}
           fill
-          className="object-cover brightness-[0.85] saturate-[0.9]" 
+          className="object-cover brightness-[0.85] saturate-[0.9] animate-image-fade" 
           priority
           sizes="100vw"
         />

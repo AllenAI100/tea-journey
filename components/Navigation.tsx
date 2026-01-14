@@ -63,17 +63,24 @@ export default function Navigation() {
                     <Link
                       key={item.path}
                       href={item.path}
-                      className={`text-base tracking-wide transition-colors duration-300 relative group py-2 font-medium ${
+                      className={`text-base tracking-wide transition-all duration-500 relative group py-2 font-medium flex flex-col items-center ${
                         isActive 
-                          ? 'text-[#A69078]' 
-                          : 'text-[#1A1816]/80 hover:text-[#A69078]'
+                          ? 'text-[#1A1816]' 
+                          : 'text-[#5A5654] hover:text-[#1A1816]'
                       }`}
                     >
                       {item.name}
-                      {/* 简单的下划线指示器 - 加粗一点 */}
-                      <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#A69078] transform origin-left transition-transform duration-300 ${
-                        isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                      }`}></span>
+                      
+                      {/* 禅意交互：墨点指示器 */}
+                      {/* 1. 选中态：实心茶色圆点 */}
+                      {isActive && (
+                        <span className="absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-[#A69078] shadow-[0_0_8px_rgba(166,144,120,0.6)]"></span>
+                      )}
+                      
+                      {/* 2. 悬停态：空心/虚化圆点 (仅当未选中时显示) */}
+                      {!isActive && (
+                        <span className="absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-[#E0D8CC] opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-out"></span>
+                      )}
                     </Link>
                   );
                 })}
@@ -83,10 +90,10 @@ export default function Navigation() {
 
               <Link
                 href="/subscribe"
-                className={`text-base px-6 py-2.5 rounded-full transition-all duration-300 tracking-wide border hover:shadow-md ${
+                className={`text-sm px-6 py-2.5 rounded-full transition-all duration-500 tracking-wide font-medium border ${
                   isScrolled
-                    ? 'bg-[#1A1816] text-[#F6F2EB] hover:bg-[#3A3634] border-transparent'
-                    : 'bg-white/10 backdrop-blur-sm text-[#1A1816] border-[#1A1816]/20 hover:bg-[#1A1816] hover:text-[#F6F2EB] hover:border-transparent'
+                    ? 'bg-[#1A1816] text-[#F6F2EB] hover:bg-[#3A3634] border-transparent shadow-md'
+                    : 'bg-white/80 backdrop-blur-md text-[#1A1816] border-white/20 hover:bg-[#F6F2EB] shadow-sm hover:shadow-md'
                 }`}
               >
                 订阅
