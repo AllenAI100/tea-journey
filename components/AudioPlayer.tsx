@@ -3,11 +3,19 @@
 import { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2 } from 'lucide-react';
 
-export default function AudioPlayer() {
+interface AudioPlayerProps {
+  src?: string;
+  title?: string;
+  className?: string;
+}
+
+export default function AudioPlayer({ 
+  src = "https://cdn.pixabay.com/download/audio/2022/03/24/audio_c8c8a73467.mp3?filename=pouring-tea-10377.mp3",
+  title = "试听：山泉煮水的声音 (Demo)",
+  className 
+}: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  // 这里暂时用一个在线的白噪音示例，后续替换为您的真实节目
-  const audioUrl = "https://cdn.pixabay.com/download/audio/2022/03/24/audio_c8c8a73467.mp3?filename=pouring-tea-10377.mp3"; 
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const togglePlay = () => {
@@ -41,7 +49,7 @@ export default function AudioPlayer() {
   }, []);
 
   return (
-    <div className="bg-[#F0EBE3] border border-[#E0D8CC] rounded-2xl p-6 md:p-8 relative overflow-hidden group">
+    <div className={`bg-[#F0EBE3] border border-[#E0D8CC] rounded-2xl p-6 md:p-8 relative overflow-hidden group ${className}`}>
       {/* 装饰性背景 */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-[#A69078]/5 rounded-full blur-2xl -mr-10 -mt-10"></div>
 
@@ -57,10 +65,10 @@ export default function AudioPlayer() {
         {/* 信息与进度 */}
         <div className="flex-1 w-full text-center md:text-left">
           <div className="mb-1 text-xs font-serif text-[#A69078] tracking-widest uppercase">
-            Coming Soon · Pilot Episode
+            Podcast Player
           </div>
           <h3 className="text-xl font-serif text-[#1A1816] mb-4">
-            试听：山泉煮水的声音 (Demo)
+            {title}
           </h3>
           
           {/* 进度条 */}
@@ -76,7 +84,7 @@ export default function AudioPlayer() {
           
           <div className="flex justify-between text-[10px] text-[#8A8690] mt-2 font-mono">
             <span>00:00</span>
-            <span>00:30</span>
+            <span>--:--</span>
           </div>
         </div>
 
@@ -86,7 +94,7 @@ export default function AudioPlayer() {
         </div>
       </div>
 
-      <audio ref={audioRef} src={audioUrl} preload="metadata" />
+      <audio ref={audioRef} src={src} preload="metadata" />
     </div>
   );
 }

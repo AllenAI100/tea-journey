@@ -5,7 +5,9 @@ import Navigation from '@/components/Navigation';
 import PageHeader from '@/components/PageHeader';
 import AudioPlayer from '@/components/AudioPlayer';
 import { motion } from 'framer-motion';
-import { Mic, Headphones, Coffee } from 'lucide-react';
+import { Mic, Play } from 'lucide-react';
+import { episodes } from '@/lib/podcast-data';
+import Link from 'next/link';
 
 export default function PodcastPage() {
   return (
@@ -16,7 +18,7 @@ export default function PodcastPage() {
         title="茶与白噪音"
         englishTitle="Podcast"
         description="声音是比文字更直接的温度。用一杯茶的时间，听见内心的声音。"
-        image="https://images.unsplash.com/photo-1478737270239-2f02b77ac6d5?w=1600&q=80" // 麦克风与氛围
+        image="https://images.unsplash.com/photo-1478737270239-2f02b77ac6d5?w=1600&q=80"
       />
 
       <main className="max-w-4xl mx-auto px-6 py-16 -mt-10 relative z-30">
@@ -32,28 +34,68 @@ export default function PodcastPage() {
           </h2>
           <p className="text-[#5A5654] leading-relaxed max-w-2xl mx-auto mb-10">
             在短视频充斥的时代，我们失去了“长谈”的耐心。
-            <br className="hidden md:block" />
-            我希望创建一个声音空间，这里没有算法推荐，没有倍速播放。
             <br />
-            只有真实的煮水声，和关于技术、生活、哲学的深度对话。
+            这里没有倍速，只有真实的思考与煮水声。
           </p>
           
-          {/* Audio Player Demo */}
-          <AudioPlayer />
+          {/* Latest Episode Player (播放最新一期) */}
+          <AudioPlayer 
+            src={episodes[0].audioUrl} 
+            title={`最新单集: ${episodes[0].title}`}
+          />
         </motion.div>
 
-        {/* Future Plan */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <PlanCard 
-            icon={<Headphones />}
-            title="沉浸式对谈"
-            desc="邀请设计师、程序员、手艺人，在茶桌旁聊聊他们的'慢生活'哲学。"
-          />
-          <PlanCard 
-            icon={<Coffee />}
-            title="声音纪录片"
-            desc="带上录音笔走进茶山。采茶的沙沙声，炒茶的噼啪声，都是大自然的白噪音。"
-          />
+        {/* Episode List (节目列表) */}
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-8">
+            <h2 className="text-2xl font-serif text-[#1A1816]">往期节目</h2>
+            <div className="h-px flex-1 bg-[#E0D8CC]"></div>
+          </div>
+          
+          <div className="grid gap-6">
+            {episodes.map((ep, index) => (
+              <motion.div
+                key={ep.slug}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Link href={`/podcast/${ep.slug}`} className="group block">
+                  <article className="flex flex-col md:flex-row gap-6 bg-[#F9F7F4] p-6 rounded-2xl border border-transparent hover:border-[#A69078]/30 hover:bg-white hover:shadow-md transition-all duration-300">
+                    {/* 封面图 */}
+                    <div className="w-full md:w-48 aspect-square rounded-xl overflow-hidden flex-shrink-0 bg-[#E0D8CC]">
+                      <img 
+                        src={ep.coverImage} 
+                        alt={ep.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    
+                    <div className="flex-1 flex flex-col justify-center">
+                      <div className="flex items-center gap-3 text-xs text-[#A69078] font-mono mb-2 uppercase tracking-wider">
+                        <span>{ep.date}</span>
+                        <span>•</span>
+                        <span>{ep.duration}</span>
+                      </div>
+                      <h3 className="text-xl font-serif text-[#1A1816] mb-3 group-hover:text-[#A69078] transition-colors">
+                        {ep.title}
+                      </h3>
+                      <p className="text-[#5A5654] text-sm leading-relaxed mb-4 line-clamp-2">
+                        {ep.excerpt}
+                      </p>
+                      <div className="flex items-center text-sm font-medium text-[#1A1816] mt-auto">
+                        <div className="w-8 h-8 rounded-full bg-[#1A1816] text-white flex items-center justify-center mr-3 group-hover:bg-[#A69078] transition-colors">
+                          <Play className="w-3 h-3 ml-0.5" />
+                        </div>
+                        收听 / 阅读详情
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Subscribe */}
