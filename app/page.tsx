@@ -68,8 +68,10 @@ export default function Home() {
               quality={90}
             />
           </motion.div>
-          {/* 渐变遮罩，保证文字可读性 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F6F2EB]/10 via-transparent to-[#F6F2EB] z-10"></div>
+          {/* 渐变遮罩 - 终极版：更自然的过渡，确保文字区域有足够的对比度 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#F6F2EB] opacity-100 z-10"></div>
+          {/* 额外的底部光晕，专门托住文字 */}
+          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#F6F2EB]/90 via-[#F6F2EB]/40 to-transparent z-10 pointer-events-none"></div>
         </div>
 
         {/* 内容层 */}
@@ -80,16 +82,16 @@ export default function Home() {
             variants={staggerContainer}
           >
             
-          <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl lg:text-9xl mb-6 font-serif tracking-tight text-[#2C2824]">
+          <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl lg:text-9xl mb-6 font-serif tracking-tight text-[#2C2824] drop-shadow-xl">
             茶 <span className="text-[#A69078] font-light">&</span> 旅
           </motion.h1>
           
           <motion.div variants={fadeInUp} className="flex flex-col gap-2 mb-10">
-            <p className="text-xl md:text-2xl text-[#3A3634] font-light tracking-wide">
-              从代码世界回归<span className="font-normal text-[#1A1816] border-b border-[#A69078]/50 pb-1">山野</span>
+            <p className="text-xl md:text-2xl text-[#1A1816] font-medium tracking-wide drop-shadow-md">
+              从代码世界回归<span className="font-normal text-[#1A1816] border-b-2 border-[#A69078] pb-1">山野</span>
               的探索手记
             </p>
-            <p className="text-sm md:text-base text-[#5A5654] font-light tracking-widest uppercase opacity-80 mt-2 font-sans">
+            <p className="text-sm md:text-base text-[#2C2824] font-semibold tracking-widest uppercase opacity-90 mt-4 font-sans drop-shadow-sm">
               A journey from tech world to tea mountains
             </p>
           </motion.div>
