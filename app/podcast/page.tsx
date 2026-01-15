@@ -29,7 +29,7 @@ export default function PodcastPage() {
           className="bg-white p-8 md:p-12 rounded-3xl border border-[#E0D8CC] shadow-xl shadow-[#A69078]/5 mb-16 text-center"
         >
           <Mic className="w-8 h-8 text-[#A69078] mx-auto mb-6" />
-          <h2 className="text-2xl md:text-3xl font-serif text-[#1A1816] mb-6">
+          <h2 className="text-2xl md:text-3xl font-serif text-[#2C2824] mb-6">
             为什么要开始这档播客？
           </h2>
           <p className="text-[#5A5654] leading-relaxed max-w-2xl mx-auto mb-10">
@@ -48,7 +48,7 @@ export default function PodcastPage() {
         {/* Episode List (节目列表) */}
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-2xl font-serif text-[#1A1816]">往期节目</h2>
+            <h2 className="text-2xl font-serif text-[#2C2824]">往期节目</h2>
             <div className="h-px flex-1 bg-[#E0D8CC]"></div>
           </div>
           
@@ -78,14 +78,14 @@ export default function PodcastPage() {
                         <span>•</span>
                         <span>{ep.duration}</span>
                       </div>
-                      <h3 className="text-xl font-serif text-[#1A1816] mb-3 group-hover:text-[#A69078] transition-colors">
+                      <h3 className="text-xl font-serif text-[#2C2824] mb-3 group-hover:text-[#A69078] transition-colors">
                         {ep.title}
                       </h3>
                       <p className="text-[#5A5654] text-sm leading-relaxed mb-4 line-clamp-2">
                         {ep.excerpt}
                       </p>
-                      <div className="flex items-center text-sm font-medium text-[#1A1816] mt-auto">
-                        <div className="w-8 h-8 rounded-full bg-[#1A1816] text-white flex items-center justify-center mr-3 group-hover:bg-[#A69078] transition-colors">
+                      <div className="flex items-center text-sm font-medium text-[#2C2824] mt-auto">
+                        <div className="w-8 h-8 rounded-full bg-[#2C2824] text-white flex items-center justify-center mr-3 group-hover:bg-[#A69078] transition-colors">
                           <Play className="w-3 h-3 ml-0.5" />
                         </div>
                         收听 / 阅读详情
@@ -99,7 +99,7 @@ export default function PodcastPage() {
         </div>
 
         {/* Subscribe */}
-        <div className="text-center bg-[#1A1816] text-[#F6F2EB] rounded-2xl p-10 relative overflow-hidden">
+        <div className="text-center bg-[#2C2824] text-[#F6F2EB] rounded-2xl p-10 relative overflow-hidden">
           <div className="relative z-10">
             <h3 className="text-xl font-serif mb-4">想要第一时间收听？</h3>
             <p className="text-white/60 text-sm mb-6">

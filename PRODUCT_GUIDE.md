@@ -44,7 +44,15 @@
     *   数据源: `lib/podcast-data.ts` (Mock Data)。
     *   播放器: 自研 `AudioPlayer` 组件 (HTML5 Audio)。
     *   详情页: `app/podcast/[slug]/page.tsx` 动态路由。
-*   **未来规划 (Roadmap)**: 迁移至 Contentlayer 或 RSS 自动化抓取。
+
+### 内容管理系统 (CMS) - v1.2 新增
+*   **架构**: **Git-based CMS (Contentlayer)**。
+*   **数据源**: 本地 `.mdx` 文件，存储于 `content/` 目录。
+*   **写作流程**:
+    1.  在 `content/` 下对应目录（reading/essays/tea-journal）新建 `.mdx` 文件。
+    2.  填写 Frontmatter (title, date, excerpt, image, category)。
+    3.  提交 Git，触发自动构建。
+*   **构建策略**: 采用 "Decoupled Mode" (解耦模式)，在 `package.json` 中分离 `contentlayer build` 和 `next build`，以规避 Turbopack 兼容性问题。
 
 ---
 

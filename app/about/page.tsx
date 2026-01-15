@@ -15,7 +15,7 @@ export default function AboutPage() {
       {/* 3. Values: 核心价值观 (重构为纯生活哲学) */}
       <section className="py-24 px-6 bg-white grain-texture border-y border-[#E0D8CC]">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-serif text-[#1A1816] mb-4">我相信的原则</h2>
+          <h2 className="text-3xl font-serif text-[#2C2824] mb-4">我相信的原则</h2>
           <p className="text-[#8A8690] mb-16 max-w-2xl mx-auto font-light">
              在快与慢之间，寻找内心的恒量。
           </p>
@@ -31,7 +31,7 @@ export default function AboutPage() {
                 <div className="mb-6 p-3 bg-[#E8DFD2]/30 rounded-lg w-fit group-hover:bg-[#A69078] group-hover:text-white transition-colors duration-300 text-[#A69078]">
                   <value.icon className="w-6 h-6" />
                 </div>
-                <h3 className="font-serif text-lg text-[#1A1816] mb-3 font-bold group-hover:text-[#A69078] transition-colors">{value.title}</h3>
+                <h3 className="font-serif text-lg text-[#2C2824] mb-3 font-bold group-hover:text-[#A69078] transition-colors">{value.title}</h3>
                 <p className="text-[#5A5654] text-sm font-light leading-relaxed">{value.desc}</p>
               </div>
             ))}
@@ -45,7 +45,7 @@ export default function AboutPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-[#A69078]/10 to-transparent rounded-full -z-10"></div>
 
         <div className="max-w-2xl mx-auto relative z-10">
-          <h2 className="text-3xl md:text-5xl font-serif mb-8 text-[#1A1816]">
+          <h2 className="text-3xl md:text-5xl font-serif mb-8 text-[#2C2824]">
             准备好开始探索了吗？
           </h2>
           <p className="text-lg text-[#5A5654] mb-12 font-light leading-relaxed">
@@ -57,7 +57,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link 
               href="/subscribe" 
-              className="btn-primary flex items-center gap-2 group"
+              className="btn-primary flex items-center gap-2 group !bg-[#2C2824] hover:!bg-[#A69078]"
             >
               订阅我的周刊 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>

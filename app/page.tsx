@@ -136,7 +136,7 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl mb-10 font-serif text-[#1A1816]">
+            <h2 className="text-3xl md:text-4xl mb-10 font-serif text-[#2C2824]">
               一场逃离算法的<br/>
               <span className="italic text-[#A69078]">回归之旅</span>
             </h2>
@@ -159,7 +159,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-serif text-[#1A1816] mb-2">精选专栏</h2>
+              <h2 className="text-3xl md:text-4xl font-serif text-[#2C2824] mb-2">精选专栏</h2>
               <p className="text-[#A69078] tracking-widest uppercase text-xs font-semibold">Featured Stories</p>
             </motion.div>
             
@@ -203,7 +203,7 @@ export default function Home() {
                           {article.category}
                         </span>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-serif mb-3 group-hover:text-[#A69078] transition-colors text-[#1A1816] leading-tight">
+                      <h3 className="text-xl md:text-2xl font-serif mb-3 group-hover:text-[#A69078] transition-colors text-[#2C2824] leading-tight">
                         {article.title}
                       </h3>
                       <p className="text-[#5A5654] text-sm leading-relaxed line-clamp-3 font-light">
@@ -233,7 +233,7 @@ export default function Home() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-4 font-serif text-[#1A1816]">
+            <h2 className="text-3xl md:text-4xl mb-4 font-serif text-[#2C2824]">
               构建你的知识库
             </h2>
             <p className="text-[#5A5654] max-w-lg mx-auto">
@@ -268,7 +268,7 @@ export default function Home() {
       </section>
 
       {/* Subscribe CTA */}
-      <section className="py-24 px-6 bg-[#1A1816] text-[#F6F2EB] relative overflow-hidden">
+      <section className="py-24 px-6 bg-[#2C2824] text-[#F6F2EB] relative overflow-hidden">
         {/* 抽象背景 */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#A69078]/10 rounded-full blur-[100px] pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#FFFFFF]/5 rounded-full blur-[80px] pointer-events-none -translate-x-1/3 translate-y-1/3"></div>

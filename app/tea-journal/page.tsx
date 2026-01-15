@@ -4,41 +4,23 @@ import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import PageHeader from '@/components/PageHeader';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-
-const journalList = [
-  {
-    title: '为什么从IT转行做茶：一个技术人的选择',
-    excerpt: '在代码世界摸爬十几年，我决定换一种方式理解世界。不是冲动，是对生活方式的重新思考...',
-    date: '2024.01.10',
-    path: '/tea-journal/why-tea',
-    category: '做茶日记'
-  },
-  {
-    title: '寻茶记：武夷山的三天',
-    excerpt: '为了找到合适的大红袍，我在武夷山待了三天。上山、看厂、试茶，每一步都不能省...',
-    date: '2024.12.22',
-    path: '/tea-journal/wuyi-trip',
-    category: '产品故事'
-  },
-  {
-    title: '岩茶是怎么做出来的',
-    excerpt: '从采摘到成品，岩茶需要经过十几道工序。每一步都影响着最终的香气和口感...',
-    date: '2024.12.15',
-    path: '/tea-journal/how-yancha-made',
-    category: '茶知识'
-  }
-];
-
-const categories = ['全部', '做茶日记', '产品故事', '茶知识'];
+import { allTeaJournals } from 'contentlayer/generated';
+import { compareDesc, format } from 'date-fns';
 
 export default function TeaJournalPage() {
   const [selectedCategory, setSelectedCategory] = useState('全部');
+  const categories = ['全部', '做茶日记', '茶知识', '产品故事'];
 
-  const filteredList = selectedCategory === '全部'
-    ? journalList
-    : journalList.filter(item => item.category === selectedCategory);
+  // 1. 获取并排序文章
+  const journals = allTeaJournals.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+
+  // 2. 筛选逻辑
+  const filteredList = selectedCategory === '全部' 
+    ? journals 
+    : journals.filter(post => post.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-[#F6F2EB]">
@@ -60,7 +42,7 @@ export default function TeaJournalPage() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-5 py-2 rounded-full text-sm transition-all tracking-wide shadow-sm ${
                 selectedCategory === cat
-                  ? 'bg-[#1A1816] text-[#F6F2EB]'
+                  ? 'bg-[#2C2824] text-[#F6F2EB]'
                   : 'bg-white text-[#5A5654] border border-[#E0D8CC] hover:border-[#A69078] hover:text-[#A69078]'
               }`}
             >
@@ -80,34 +62,41 @@ export default function TeaJournalPage() {
         <div className="grid gap-8">
           {filteredList.map((post, index) => (
             <motion.div
-              key={post.path}
+              key={post.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Link href={post.path} className="group block">
-                <article className="bg-white p-8 rounded-2xl border border-[#E0D8CC] hover:border-[#A69078]/50 hover:shadow-lg hover:shadow-[#A69078]/5 transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs uppercase tracking-widest text-[#A69078] font-bold">
-                      {post.category}
-                    </span>
-                    <span className="h-px w-4 bg-[#E0D8CC]"></span>
-                    <span className="text-sm text-[#8A8690] font-serif italic">{post.date}</span>
+              <Link href={post.url} className="group block bg-white p-8 rounded-2xl border border-transparent hover:border-[#A69078]/30 hover:shadow-lg hover:shadow-[#A69078]/5 transition-all duration-300">
+                <div className="flex flex-col md:flex-row gap-8">
+                  <div className="md:w-1/3">
+                    <div className="aspect-[4/3] relative overflow-hidden rounded-lg bg-[#E0D8CC]">
+                       <Image
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                    </div>
                   </div>
-                  
-                  <h2 className="text-2xl font-serif mb-3 text-[#1A1816] group-hover:text-[#A69078] transition-colors">
-                    {post.title}
-                  </h2>
-                  <p className="text-[#5A5654] leading-relaxed font-light mb-6 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center text-[#1A1816] font-medium group-hover:text-[#A69078] transition-colors">
-                    <span className="text-sm tracking-wide">阅读全文</span>
-                    <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
+                  <div className="md:w-2/3 flex flex-col justify-center">
+                    <div className="flex items-center gap-3 mb-3 text-xs tracking-widest text-[#A69078] uppercase font-mono">
+                      <span>{format(new Date(post.date), 'yyyy.MM.dd')}</span>
+                      <span>•</span>
+                      <span>{post.category || 'Journal'}</span>
+                    </div>
+                    <h2 className="text-2xl font-serif text-[#2C2824] mb-4 group-hover:text-[#A69078] transition-colors leading-tight">
+                      {post.title}
+                    </h2>
+                    <p className="text-[#5A5654] font-light leading-relaxed mb-6 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex items-center text-[#2C2824] text-sm font-medium group-hover:translate-x-2 transition-transform duration-300">
+                      阅读全文 <ArrowRight className="w-4 h-4 ml-2" />
+                    </div>
                   </div>
-                </article>
+                </div>
               </Link>
             </motion.div>
           ))}

@@ -93,8 +93,8 @@ export default function Navigation() {
                 href="/subscribe"
                 className={`text-sm px-6 py-2.5 rounded-full transition-all duration-500 tracking-wide font-medium border ${
                   isScrolled
-                    ? 'bg-[#1A1816] text-[#F6F2EB] hover:bg-[#3A3634] border-transparent shadow-md'
-                    : 'bg-white/80 backdrop-blur-md text-[#1A1816] border-white/20 hover:bg-[#F6F2EB] shadow-sm hover:shadow-md'
+                    ? 'bg-[#2C2824] text-[#F6F2EB] hover:bg-[#A69078] border-transparent shadow-md'
+                    : 'bg-white/80 backdrop-blur-md text-[#2C2824] border-white/20 hover:bg-[#F6F2EB] shadow-sm hover:shadow-md'
                 }`}
               >
                 订阅
