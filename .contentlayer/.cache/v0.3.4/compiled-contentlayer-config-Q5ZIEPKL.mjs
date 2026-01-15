@@ -3,7 +3,7 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 var Reading = defineDocumentType(() => ({
   name: "Reading",
   filePathPattern: `reading/**/*.mdx`,
-  contentType: "mdx",
+  contentType: "markdown",
   fields: {
     title: { type: "string", required: true },
     date: { type: "date", required: true },
@@ -26,7 +26,7 @@ var Reading = defineDocumentType(() => ({
 var TeaJournal = defineDocumentType(() => ({
   name: "TeaJournal",
   filePathPattern: `tea-journal/**/*.mdx`,
-  contentType: "mdx",
+  contentType: "markdown",
   fields: {
     title: { type: "string", required: true },
     date: { type: "date", required: true },
@@ -49,7 +49,7 @@ var TeaJournal = defineDocumentType(() => ({
 var Essay = defineDocumentType(() => ({
   name: "Essay",
   filePathPattern: `essays/**/*.mdx`,
-  contentType: "mdx",
+  contentType: "markdown",
   fields: {
     title: { type: "string", required: true },
     date: { type: "date", required: true },
@@ -77,4 +77,4 @@ export {
   TeaJournal,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-MF5QS6VS.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-Q5ZIEPKL.mjs.map

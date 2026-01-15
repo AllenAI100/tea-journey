@@ -4,7 +4,7 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 export const Reading = defineDocumentType(() => ({
   name: 'Reading',
   filePathPattern: `reading/**/*.mdx`,
-  contentType: 'mdx',
+  contentType: 'markdown',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
@@ -29,7 +29,7 @@ export const Reading = defineDocumentType(() => ({
 export const TeaJournal = defineDocumentType(() => ({
   name: 'TeaJournal',
   filePathPattern: `tea-journal/**/*.mdx`,
-  contentType: 'mdx',
+  contentType: 'markdown',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
@@ -53,7 +53,7 @@ export const TeaJournal = defineDocumentType(() => ({
 export const Essay = defineDocumentType(() => ({
   name: 'Essay',
   filePathPattern: `essays/**/*.mdx`,
-  contentType: 'mdx',
+  contentType: 'markdown',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },

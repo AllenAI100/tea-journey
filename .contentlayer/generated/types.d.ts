@@ -17,8 +17,8 @@ export type Essay = {
   date: IsoDateTimeString
   excerpt: string
   image: string
-  /** MDX file body */
-  body: MDX
+  /** Markdown file body */
+  body: Markdown
   url: string
   slug: string
 }
@@ -34,8 +34,8 @@ export type Reading = {
   image: string
   author?: string | undefined
   category: string
-  /** MDX file body */
-  body: MDX
+  /** Markdown file body */
+  body: Markdown
   url: string
   slug: string
 }
@@ -50,8 +50,8 @@ export type TeaJournal = {
   excerpt: string
   image: string
   category: string
-  /** MDX file body */
-  body: MDX
+  /** Markdown file body */
+  body: Markdown
   url: string
   slug: string
 }  
