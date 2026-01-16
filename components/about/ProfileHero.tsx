@@ -9,8 +9,8 @@ export default function ProfileHero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white shadow-xl"
+          transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
+          className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-10 rounded-full overflow-hidden border border-[#E6E0D4] shadow-[0_20px_40px_-10px_rgba(60,50,40,0.1)]"
         >
           {/* 这里应该放您的真实头像，暂时用 Unsplash 占位 */}
           <img 
@@ -24,7 +24,7 @@ export default function ProfileHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-4xl md:text-6xl font-serif mb-6 text-[#1A1816]"
+          className="text-4xl md:text-6xl font-serif mb-6 text-[#24201D]"
         >
           我是 Allen.
         </motion.h1>
@@ -33,16 +33,16 @@ export default function ProfileHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-xl md:text-2xl text-[#5A5654] font-light max-w-2xl mx-auto leading-relaxed"
+          className="text-xl md:text-2xl text-[#6E6862] font-light max-w-2xl mx-auto leading-relaxed"
         >
           曾试图用逻辑重构世界，
           <br className="md:hidden" />
-          现在，我选择用<span className="font-serif italic text-[#A69078] mx-2">茶汤</span>温暖生活。
+          现在，我选择用<span className="font-serif italic text-[#C6A355] mx-2 font-normal">茶汤</span>温暖生活。
         </motion.p>
       </div>
 
       {/* 背景装饰 */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#A69078]/5 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#58664A]/5 rounded-full blur-[120px] -z-10 mix-blend-multiply"></div>
     </section>
   );
 }

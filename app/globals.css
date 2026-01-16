@@ -2,9 +2,29 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-serif: var(--font-serif), "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
-  --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --font-handwriting: var(--font-handwriting), "Ma Shan Zheng", "Songti SC", cursive;
+  /* 优先使用 Web Fonts (Noto), 其次是高质量系统字体, 最后是兜底 */
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", "Noto Serif CJK SC", serif;
+  --font-sans: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-soft: "LXGW WenKai Screen", "LXGW WenKai", "KaiTi", "STKaiti", cursive;
+  --font-handwriting: var(--font-handwriting), "Ma Shan Zheng", "KaiTi", "STKaiti", "KaiTi_GB2312", cursive;
+
+  /* 核心颜色映射 */
+  --color-background: #F7F5F0; /* 宣纸白 */
+  --color-foreground: #24201D; /* 墨黑 */
+  
+  --color-primary: #58664A; /* 深苔藓 */
+  --color-primary-light: #7A8B69;
+  --color-primary-dark: #3D4A30;
+  
+  --color-tea-cream: #EAE6DF;
+  --color-tea-warm: #D9CDB8;
+  --color-tea-brown: #C19F6E;
+  --color-tea-deep: #8F7859;
+  
+  --color-card: #FFFFFF;
+  --color-card-foreground: #24201D;
+  
+  --color-border: #E6E0D4;
 }
 
 /* 
@@ -113,9 +133,9 @@ body {
    ===================================================== */
 
 h1, h2, h3, h4, h5, h6 {
-  /* 优先使用 Serif */
-  font-family: var(--font-serif);
-  font-weight: 500; /* 稍微加重一点点，增加墨迹感 */
+  /* 标题从严肃的 Serif 改为亲切的 WenKai (font-soft) */
+  font-family: var(--font-soft);
+  font-weight: 700; /* 加粗以增加标题的分量感 */
   color: var(--text-main);
   line-height: 1.25;
 }

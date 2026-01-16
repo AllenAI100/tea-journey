@@ -29,15 +29,43 @@
 
 ## 3. 排版规范 (Typography)
 
-*   **Font Family**:
-    *   `font-serif`: Noto Serif SC。用于标题 (H1-H6)、引言、日期。
-    *   `font-sans`: Noto Sans SC。用于正文、UI 控件。
+> "字如其人，亦如其茶。" —— 我们构建了一套融合传统人文与现代屏幕美学的混合字体系统。
+
+### 3.1 字体家族 (Font Stacks)
+
+我们采用了 **"Web Fonts First, Local Fallback"** 的混合策略，通过国内镜像引入 Google Fonts，确保全平台一致的高级质感。
+
+*   **标题 (Headings)**: `LXGW WenKai Screen` (霞鹜文楷)。
+    *   **角色**: 替代了传统的宋体。
+    *   **哲学**: 从"博物馆的严肃"转向"茶人手记的亲切"。文楷兼具楷书的书写韵味与黑体的清晰骨架，圆润温厚，如温玉在手。
+*   **正文 (Body)**: `Noto Sans SC` (思源黑体)。
+    *   **角色**: UI 界面、长文正文。
+    *   **哲学**: 现代、中性、空气感。作为背景，不抢夺内容的注意力。
+*   **阅读增强 (Reading & Quotes)**: `LXGW WenKai` (文楷)。
+    *   **应用**: 文章摘要 (Excerpt)、引用块 (Blockquote)、页眉描述。
+    *   **目的**: 在信息流中创造"慢下来"的视觉锚点，提示用户进入阅读模式。
+*   **装饰与品牌 (Brand & Deco)**: `Ma Shan Zheng` (马善政)。
+    *   **应用**: Logo、Hero Section 标语。
+    *   **特点**: 苍劲有力的行楷，传递"野性"与"生命力"。采用 **本地化部署** (Self-hosted) 策略，确保核心品牌资产零依赖加载。
+
+### 3.2 技术实现 (Implementation)
+
+*   **CSS 变量**:
+    *   `font-sans`: 界面基础。
+    *   `font-serif`: 备用/传统标题（思源宋体）。
+    *   `font-soft`: **新增**。专用于文楷，代表柔软、人文的语调。
+    *   `font-handwriting`: 专用于书法体。
 *   **Letter Spacing (关键)**:
-    *   中文衬线体标题：`tracking: 0.02em`。收紧字间距，增加凝聚力。
+    *   中文标题：`tracking: 0.02em`。收紧字间距，增加凝聚力。
     *   英文装饰性小字：`tracking: 0.1em`。
+
+### 3.3 排版层级 (Hierarchy)
+
 *   **Line Height**:
     *   正文：`leading-loose (1.85)`。提供舒适的阅读呼吸感。
-    *   标题：`leading-tight (1.25)`。
+    *   标题：`leading-tight (1.25)`。紧凑有力。
+*   **Font Weight**:
+    *   文楷标题使用 `font-bold` (700)，以弥补楷体笔画较细的视觉弱点，增加分量感。
 
 ## 4. 物理质感 (Materiality & Motion)
 
@@ -75,7 +103,10 @@ box-shadow: 0 20px 40px -15px rgba(193, 159, 110, 0.15);
 
 ### 图片 (Images)
 *   **处理**: 图片通常带有遮罩或圆角。
-*   **混合**: 在 Hero 区域，图片与背景通过 `mix-blend-mode` 融合，而不是生硬的叠加。
+*   **Hero Layout**: 采用 "Editorial Split"（左图右文）布局。
+    *   **Desktop**: 图片在左 (Col 7)，文字在右 (Col 5)，保持非对称美感。
+    *   **Mobile**: 图片在上，文字在下。
+    *   **风格**: 图片带有深邃的物理投影 (`shadow-2xl`) 和微妙的 `mix-blend-multiply` 纹理覆盖，去除多余的浮层装饰，保持画面纯净。
 
 ### 文章详情 (Article)
 *   **首字下沉**: 模拟杂志排版。
@@ -84,4 +115,4 @@ box-shadow: 0 20px 40px -15px rgba(193, 159, 110, 0.15);
 
 ---
 
-*Last Updated: 2026-01-16 by Designer Skill*
+*Last Updated: 2026-01-16 by Sisyphus (Typography Overhaul)*

@@ -6,9 +6,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[#E0D8CC] bg-[#F6F2EB] text-[#3A3634] relative overflow-hidden">
+    <footer className="border-t border-border bg-background text-body relative overflow-hidden">
       {/* 顶部装饰线 */}
-      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#A69078]/20 to-transparent"></div>
+      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-tea-brown/20 to-transparent"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">

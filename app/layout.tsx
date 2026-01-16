@@ -1,34 +1,17 @@
 import type { Metadata } from "next";
-import { Noto_Serif_SC, Noto_Sans_SC, Ma_Shan_Zheng } from 'next/font/google';
+import localFont from 'next/font/local';
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
 
-// 配置字体
-const notoSerifSC = Noto_Serif_SC({
-  weight: ['300', '400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-serif',
-  display: 'swap',
-  // 注意：Google Fonts 的 SC 子集可能需要 preload: false，如果 Next.js 报错再调整
-  preload: false, 
-});
-
-const notoSansSC = Noto_Sans_SC({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-  preload: false,
-});
-
-const maShanZheng = Ma_Shan_Zheng({
-  weight: '400',
-  subsets: ['latin'],
+// 配置本地手写字体 (请确保 app/fonts/MaShanZheng-Regular.ttf 存在)
+const maShanZheng = localFont({
+  src: './fonts/MaShanZheng-Regular.ttf',
   variable: '--font-handwriting',
   display: 'swap',
-  preload: false,
+  // 如果字体文件还没下载好，可以暂时注释掉下面这行，防止报错
+  weight: '400', 
 });
 
 export const metadata: Metadata = {
@@ -43,10 +26,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className={`${notoSerifSC.variable} ${notoSansSC.variable} ${maShanZheng.variable}`}>
+    <html lang="zh-CN">
+      <head>
+        {/* Google Fonts Mirror (Loli.net) */}
+        <link rel="preconnect" href="https://fonts.loli.net" />
+        <link rel="preconnect" href="https://gstatic.loli.net" crossOrigin="anonymous" />
+        <link 
+          href="https://fonts.loli.net/css2?family=LXGW+WenKai+Screen:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" 
+          rel="stylesheet"
+        />
+      </head>
       <body className={cn(
-        "antialiased bg-[#F6F2EB] text-[#2A2624] grain-texture",
-        // 默认使用无衬线体，标题显式使用 serif
+        "antialiased bg-background text-foreground grain-texture",
+        // 注入字体变量
+        maShanZheng.variable, 
         "font-sans" 
       )}>
         <Navigation />

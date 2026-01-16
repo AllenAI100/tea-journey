@@ -44,15 +44,15 @@ const stats = [
 
 export default function TeaStats() {
   return (
-    <section className="py-12 border-y border-[#E0D8CC] bg-white/50 backdrop-blur-sm">
+    <section className="py-12 border-y border-border bg-card/50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <h3 className="text-lg font-serif tracking-wide text-[#3A3634]">
-              当下的<span className="text-[#A69078] italic">生活切片</span>
+            <h3 className="text-lg font-serif tracking-wide text-foreground">
+              当下的<span className="text-tea-brown italic">生活切片</span>
             </h3>
           </div>
-          <p className="text-xs text-[#8A8690] mt-2 md:mt-0 font-light italic">
+          <p className="text-xs text-text-light mt-2 md:mt-0 font-light italic">
             "Slicing moments out of time."
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function TeaStats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="group p-5 rounded-xl border border-[#E0D8CC] bg-white hover:border-[#A69078]/50 hover:shadow-lg hover:shadow-[#A69078]/5 transition-all duration-300 relative overflow-hidden"
+              className="group p-5 rounded-xl border border-border bg-card hover:border-tea-brown/50 hover:shadow-lg hover:shadow-tea-brown/5 transition-all duration-300 relative overflow-hidden"
             >
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-4">
@@ -75,18 +75,18 @@ export default function TeaStats() {
                 </div>
                 
                 <div className="mb-2 flex items-baseline">
-                  <span className="text-2xl font-serif text-[#1A1816] tracking-tight">
+                  <span className="text-2xl font-serif text-foreground tracking-tight">
                     {stat.value}
                   </span>
-                  <span className="ml-2 text-xs text-[#A69078] uppercase font-medium">
+                  <span className="ml-2 text-xs text-tea-brown uppercase font-medium">
                     {stat.unit}
                   </span>
                 </div>
                 
-                <h4 className="text-sm font-medium text-[#3A3634] mb-1">
+                <h4 className="text-sm font-medium text-foreground mb-1">
                   {stat.label}
                 </h4>
-                <p className="text-xs text-[#8A8690] font-light font-handwriting tracking-wide">
+                <p className="text-sm text-text-light font-light font-handwriting tracking-wide">
                   {stat.desc}
                 </p>
               </div>

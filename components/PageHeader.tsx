@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -8,7 +7,8 @@ interface PageHeaderProps {
   title: string;
   description: string;
   englishTitle?: string;
-  image: string;
+  // image 属性保留但设为可选，以便兼容旧代码，但新设计中我们主要使用纯色/纹理模式
+  image?: string; 
   className?: string;
 }
 
@@ -16,64 +16,50 @@ export default function PageHeader({
   title,
   description,
   englishTitle,
-  image,
   className
 }: PageHeaderProps) {
   return (
-    <section className={cn("relative h-[45vh] min-h-[400px] flex items-end pb-16 justify-center text-center px-6 overflow-hidden grain-texture", className)}>
-      {/* Background Image - 找回通透感 */}
-      <div className="absolute inset-0 z-0 bg-black">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover brightness-[0.85] saturate-[0.9] animate-image-fade" 
-          priority
-          sizes="100vw"
-        />
-        
-        {/* 智能渐变系统：放弃全局压暗，改为"上透下深" */}
-        
-        {/* 1. 顶部微弱遮罩 (30%)：仅防止高光过曝，保留天空/光影细节 */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent h-1/3"></div>
-
-        {/* 2. 底部功能性遮罩 (80% -> 0%)：平滑过渡，专门为文字提供深色舞台 */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F0E0D] via-[#0F0E0D]/60 to-transparent top-1/3"></div>
-      </div>
-
+    <section className={cn(
+      "relative min-h-[35vh] flex items-center justify-center text-center px-6 overflow-hidden pt-24 pb-16 bg-bg-soft",
+      className
+    )}>
+      {/* 背景纹理 */}
+      <div className="absolute inset-0 grain-texture opacity-60 pointer-events-none"></div>
+      
       {/* Content Container */}
-      <div className="relative z-20 max-w-4xl mx-auto px-4 w-full flex flex-col items-center text-center pb-12">
+      <div className="relative z-10 max-w-3xl mx-auto w-full flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
           className="flex flex-col items-center"
         >
           {/* English Tag */}
           {englishTitle && (
             <motion.div 
-              className="inline-flex items-center gap-3 mb-6 opacity-0 animate-fade-in"
+              className="inline-flex items-center gap-3 mb-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
             >
-              <span className="h-px w-10 bg-[#A69078]"></span>
-              <span className="text-xs md:text-sm text-[#D4C8B5] tracking-[0.3em] uppercase font-sans font-medium drop-shadow-md" style={{ color: '#D4C8B5' }}>
+              <span className="text-xs md:text-sm text-primary tracking-[0.2em] uppercase font-sans font-medium px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
                 {englishTitle}
               </span>
-              <span className="h-px w-10 bg-[#A69078]"></span>
             </motion.div>
           )}
 
-          {/* Main Title - 强制白色内联样式 */}
-          <h1 className="text-5xl md:text-7xl mb-6 font-serif tracking-tight text-white drop-shadow-2xl" style={{ color: '#FFFFFF', textShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>
+          {/* Main Title */}
+          <h1 className="text-4xl md:text-6xl mb-6 tracking-tight text-foreground leading-tight">
             {title}
           </h1>
           
           {/* Description */}
-          <p className="text-base md:text-xl text-[#E6E0D6] max-w-2xl mx-auto leading-relaxed font-light tracking-wide drop-shadow-lg opacity-90" style={{ color: '#E6E0D6' }}>
+          <p className="text-base md:text-lg text-text-light font-soft max-w-xl mx-auto leading-relaxed font-light">
             {description}
           </p>
+          
+          {/* 装饰性分割线 */}
+          <div className="mt-8 w-16 h-px bg-tea-brown"></div>
         </motion.div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import { defineDocumentType, makeSource } from 'contentlayer2/source-files';
 
 // 1. 定义 "Reading" (读书笔记) 数据模型
 export const Reading = defineDocumentType(() => ({

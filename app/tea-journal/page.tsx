@@ -14,17 +14,16 @@ export default function TeaJournalPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#F6F2EB]">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
       <PageHeader
         title="做茶日记"
         englishTitle="Tea Journal"
         description="记录每一次水与叶的相遇。在制茶与品鉴中，重新学习敬畏自然。"
-        image="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=1600&q=80"
       />
 
-      <main className="max-w-4xl mx-auto px-6 py-16 -mt-6 relative z-30">
+      <main className="max-w-4xl mx-auto px-6 py-20 relative z-30">
         <TeaJournalList posts={posts} categories={categories} />
       </main>
     </div>

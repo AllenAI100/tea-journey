@@ -33,46 +33,45 @@ const readingList = [
 
 export default function ReadingPage() {
   return (
-    <div className="min-h-screen bg-[#F6F2EB]">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
       <PageHeader
         title="读书笔记"
         englishTitle="Reading Notes"
         description="在字里行间，寻找生活的注脚。阅读不是为了获取信息，而是为了唤醒思考。"
-        image="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600&q=80" // 书堆与眼镜
       />
 
-      <main className="max-w-4xl mx-auto px-6 py-16 -mt-10 relative z-30">
-        <div className="grid gap-8">
+      <main className="max-w-4xl mx-auto px-6 py-20 relative z-30">
+        <div className="grid gap-10">
           {readingList.map((post, index) => (
             <motion.div
               key={post.path}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
             >
               <Link href={post.path} className="group block">
-                <article className="bg-white p-8 rounded-2xl border border-[#E0D8CC] hover:border-[#A69078]/50 hover:shadow-lg hover:shadow-[#A69078]/5 transition-all duration-300">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs uppercase tracking-widest text-[#A69078] font-bold">
+                <article className="bg-card p-8 md:p-10 rounded-2xl border border-border hover:border-tea-brown hover:shadow-[0_20px_40px_-15px_rgba(193,159,110,0.15)] hover:-translate-y-1 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]">
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className="text-xs uppercase tracking-widest text-tea-brown font-bold font-mono">
                       {post.category}
                     </span>
-                    <span className="h-px w-4 bg-[#E0D8CC]"></span>
-                    <span className="text-sm text-[#8A8690] font-serif italic">{post.date}</span>
+                    <span className="h-px w-4 bg-border"></span>
+                    <span className="text-sm text-text-faint font-mono">{post.date}</span>
                   </div>
                   
-                  <h2 className="text-2xl font-serif mb-3 text-[#1A1816] group-hover:text-[#A69078] transition-colors">
+                  <h2 className="text-2xl md:text-3xl font-serif mb-4 text-foreground group-hover:text-primary transition-colors leading-tight">
                     {post.title}
                   </h2>
-                  <p className="text-[#5A5654] leading-relaxed font-light mb-6 line-clamp-2">
+                  <p className="text-text-light font-soft leading-relaxed font-light mb-8 line-clamp-2 text-base">
                     {post.excerpt}
                   </p>
                   
-                  <div className="flex items-center text-[#1A1816] font-medium group-hover:text-[#A69078] transition-colors">
-                    <span className="text-sm tracking-wide">阅读全文</span>
-                    <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
+                  <div className="flex items-center text-foreground font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    <span className="text-sm tracking-wide border-b border-foreground pb-0.5 group-hover:border-primary group-hover:text-primary transition-colors">阅读全文</span>
+                    <ArrowRight className="w-4 h-4 ml-2 text-tea-brown" />
                   </div>
                 </article>
               </Link>

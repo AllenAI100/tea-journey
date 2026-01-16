@@ -48,86 +48,93 @@ export default function Home() {
 
   return (
     <div className="overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center text-center px-6 overflow-hidden">
-        {/* 背景层 */}
-        <div className="absolute inset-0 z-0">
-          <motion.div 
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            className="w-full h-full"
-          >
-            <div className="absolute inset-0 bg-[#1A1816]/40 z-10 mix-blend-multiply" />
-            <Image
-              src="/images/tea-mountain.jpg"
-              alt="茶山远景"
-              fill
-              className="object-cover animate-image-fade"
-              priority
-              quality={90}
-            />
-          </motion.div>
-          {/* 渐变遮罩 - 终极版：更自然的过渡，确保文字区域有足够的对比度 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#F6F2EB] opacity-100 z-10"></div>
-          {/* 额外的底部光晕，专门托住文字 */}
-          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#F6F2EB]/90 via-[#F6F2EB]/40 to-transparent z-10 pointer-events-none"></div>
-        </div>
+      {/* Hero Section - Magazine Style (Image Left, Text Right) */}
+      <section className="relative bg-background-soft overflow-hidden pt-28 pb-12 md:pt-32 md:pb-20">
+        {/* 背景纹理 */}
+        <div className="absolute inset-0 grain-texture opacity-50 pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            
+            {/* 左侧：视觉区 (7 cols) */}
+            <motion.div 
+              className="lg:col-span-7 order-1 lg:order-1 relative"
+              initial={{ opacity: 0, scale: 0.98, x: -20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1] }}
+            >
+              <div className="relative aspect-[3/2] md:aspect-[16/10] w-full shadow-2xl shadow-foreground/10 rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/tea-mountain.jpg"
+                  alt="茶山远景"
+                  fill
+                  className="object-cover"
+                  priority
+                  quality={95}
+                />
+                {/* 增加一点内发光/纹理，减少图片生硬感 */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-foreground/10 to-transparent mix-blend-multiply pointer-events-none"></div>
+              </div>
+            </motion.div>
 
-        {/* 内容层 */}
-          <motion.div 
-            className="relative z-20 max-w-4xl px-4 text-[#1A1816]"
-            initial="initial"
-            animate="animate"
-            variants={staggerContainer}
-          >
-            
-          <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl lg:text-9xl mb-6 font-serif tracking-tight text-[#24201D] mix-blend-multiply opacity-90">
-            茶 <span className="text-[#8F7859] font-light italic">&</span> 旅
-          </motion.h1>
-          
-          <motion.div variants={fadeInUp} className="flex flex-col gap-2 mb-10">
-            <p className="text-xl md:text-2xl text-[#24201D] font-medium tracking-wide">
-              从代码世界回归<span className="font-normal text-[#24201D] border-b border-[#8F7859] pb-0.5 mx-1">山野</span>
-              的探索手记
-            </p>
-            <p className="text-sm md:text-base text-[#6E6862] font-medium tracking-[0.2em] uppercase opacity-80 mt-4 font-sans">
-              A journey from tech world to tea mountains
-            </p>
-          </motion.div>
-          
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12">
-            <Link 
-              href="/about" 
-              className="group relative px-10 py-4 bg-[#24201D] text-[#EAE6DF] rounded-full overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-[#24201D]/20 hover:-translate-y-1"
+            {/* 右侧：文字区 (5 cols) */}
+            <motion.div
+              className="lg:col-span-5 text-center lg:text-left order-2 lg:order-2 flex flex-col"
+              initial="initial"
+              animate="animate"
+              variants={staggerContainer}
             >
-              <span className="relative z-10 font-medium tracking-wide flex items-center gap-3 text-lg">
-                阅读我的转型故事 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </Link>
-            
-            <Link 
-              href="/subscribe" 
-              className="group px-10 py-4 bg-transparent border border-[#24201D]/20 text-[#24201D] rounded-full hover:bg-[#24201D]/5 hover:border-[#24201D] transition-all duration-500 font-medium tracking-wide text-lg backdrop-blur-sm"
-            >
-              加入品茗圈
-            </Link>
-          </motion.div>
-        </motion.div>
+              <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight text-foreground leading-[1.15]">
+                从代码逻辑<br/>
+                到<span className="font-handwriting text-primary relative inline-block px-2 transform scale-110">
+                  自然韵律
+                  <svg className="absolute -bottom-2 left-0 w-full h-2 text-accent-gold/40" viewBox="0 0 100 10" preserveAspectRatio="none">
+                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
+                  </svg>
+                </span>
+              </motion.h1>
+              
+              <motion.div variants={fadeInUp} className="flex flex-col gap-4 mb-8">
+                <p className="text-base md:text-lg text-text-light font-light leading-relaxed max-w-lg mx-auto lg:mx-0">
+                  一场关于技术与茶的跨界实验。在这里，我们用 debug 的思维审视制茶工艺，用重构的视角打磨生活方式。
+                </p>
+              </motion.div>
+              
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+                <Link 
+                  href="/tea-journal" 
+                  className="group relative px-8 py-3 bg-foreground text-background rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                >
+                  <span className="relative z-10 font-medium tracking-wide flex items-center gap-2 text-sm md:text-base">
+                    探索茶记 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+                
+                <Link 
+                  href="/about" 
+                  className="group px-8 py-3 text-foreground font-medium tracking-wide flex items-center gap-2 text-sm md:text-base hover:text-primary transition-colors"
+                >
+                  了解作者
+                </Link>
+              </motion.div>
+            </motion.div>
+
+          </div>
+        </div>
 
         {/* 滚动提示 */}
         <motion.div 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 10, 0] }}
-          transition={{ delay: 1, duration: 2, repeat: Infinity }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-[#A69078]"
+          animate={{ opacity: 1, y: [0, 8, 0] }}
+          transition={{ delay: 1.5, duration: 2, repeat: Infinity }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 text-foreground/30"
         >
           <ChevronDown className="w-6 h-6" />
         </motion.div>
       </section>
 
       {/* Philosophy / Intro */}
-      <section className="py-24 px-6 bg-[#F6F2EB]">
+      <section className="py-24 px-6 bg-background">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -135,11 +142,11 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl mb-10 font-serif text-[#2C2824]">
+            <h2 className="text-3xl md:text-4xl mb-10 font-serif text-foreground">
               一场逃离算法的<br/>
-              <span className="italic text-[#A69078]">回归之旅</span>
+              <span className="italic text-tea-brown">回归之旅</span>
             </h2>
-            <p className="text-lg text-[#5A5654] leading-relaxed mx-auto max-w-[65ch] font-light">
+            <p className="text-lg text-text-light leading-relaxed mx-auto max-w-[65ch] font-light">
               在快节奏的科技世界穿行多年后，我选择放慢脚步，走进云南古老的茶山。
               <br/><br/>
               这里没有即时的 <span className="italic font-serif">Response</span>，只有需要耐心等待的 <span className="italic font-serif">Fermentation</span>（发酵）。
@@ -150,7 +157,7 @@ export default function Home() {
       </section>
 
       {/* Featured Articles */}
-      <section className="py-24 px-6 bg-white">
+      <section className="py-24 px-6 bg-card">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 px-2">
             <motion.div
@@ -158,8 +165,8 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-serif text-[#24201D] mb-2">精选专栏</h2>
-              <p className="text-[#8F7859] tracking-widest uppercase text-xs font-semibold">Featured Stories</p>
+              <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-2">精选专栏</h2>
+              <p className="text-tea-deep tracking-widest uppercase text-xs font-semibold">Featured Stories</p>
             </motion.div>
             
             <motion.div
@@ -168,7 +175,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="hidden md:block"
             >
-              <Link href="/essays" className="group flex items-center gap-2 text-[#6E6862] hover:text-[#24201D] transition-colors">
+              <Link href="/essays" className="group flex items-center gap-2 text-text-light hover:text-foreground transition-colors">
                 查看全部 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -185,7 +192,7 @@ export default function Home() {
               >
                 <Link href={article.path} className="group block h-full">
                   <article className="h-full flex flex-col">
-                    <div className="aspect-[4/3] overflow-hidden rounded-xl bg-[#D9CDB8] mb-6 relative shadow-sm group-hover:shadow-md transition-shadow duration-500">
+                    <div className="aspect-[4/3] overflow-hidden rounded-xl bg-tea-warm mb-6 relative shadow-sm group-hover:shadow-md transition-shadow duration-500">
                       <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10 duration-500" />
                       <Image
                         src={article.image}
@@ -197,15 +204,15 @@ export default function Home() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
-                        <span className="h-px w-6 bg-[#C19F6E]"></span>
-                        <span className="text-xs uppercase tracking-widest text-[#C19F6E] font-bold">
+                        <span className="h-px w-6 bg-tea-brown"></span>
+                        <span className="text-xs uppercase tracking-widest text-tea-brown font-bold">
                           {article.category}
                         </span>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-serif mb-3 text-[#24201D] leading-tight group-hover:text-[#58664A] transition-colors duration-300">
+                      <h3 className="text-xl md:text-2xl font-serif mb-3 text-foreground leading-tight group-hover:text-primary transition-colors duration-300">
                         {article.title}
                       </h3>
-                      <p className="text-[#6E6862] text-sm leading-relaxed line-clamp-3 font-light">
+                      <p className="text-text-light text-sm leading-relaxed line-clamp-3 font-light">
                         {article.excerpt}
                       </p>
                     </div>
@@ -224,7 +231,7 @@ export default function Home() {
       </section>
 
       {/* Exploration Categories */}
-      <section className="py-24 px-6 bg-[#F0EBE3]">
+      <section className="py-24 px-6 bg-bg-soft">
         <div className="max-w-5xl mx-auto">
           <motion.div 
             className="text-center mb-16"
@@ -232,10 +239,10 @@ export default function Home() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-4 font-serif text-[#2C2824]">
+            <h2 className="text-3xl md:text-4xl mb-4 font-serif text-foreground">
               构建你的知识库
             </h2>
-            <p className="text-[#5A5654] max-w-lg mx-auto">
+            <p className="text-text-light max-w-lg mx-auto">
               就像整理代码模块一样，我将生活分为三个命名空间。
             </p>
           </motion.div>
@@ -267,9 +274,9 @@ export default function Home() {
       </section>
 
       {/* Subscribe CTA */}
-      <section className="py-24 px-6 bg-[#2C2824] text-[#F6F2EB] relative overflow-hidden">
+      <section className="py-24 px-6 bg-foreground text-background relative overflow-hidden">
         {/* 抽象背景 */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#A69078]/10 rounded-full blur-[100px] pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-tea-brown/10 rounded-full blur-[100px] pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#FFFFFF]/5 rounded-full blur-[80px] pointer-events-none -translate-x-1/3 translate-y-1/3"></div>
 
         <div className="relative z-10 max-w-3xl mx-auto text-center">
@@ -281,9 +288,9 @@ export default function Home() {
           >
             <h2 className="text-3xl md:text-5xl font-serif mb-6 leading-tight">
               每两周，<br/>
-              发送一份<span className="text-[#A69078] italic">生活重构报告</span>
+              发送一份<span className="text-tea-brown italic">生活重构报告</span>
             </h2>
-            <p className="text-lg text-[#F6F2EB]/60 mb-10 font-light max-w-xl mx-auto">
+            <p className="text-lg text-background/60 mb-10 font-light max-w-xl mx-auto">
               不贩卖焦虑，只分享经过深度思考的观点、值得一读的好书，
               以及我又发现了哪款好茶。
             </p>
@@ -292,9 +299,9 @@ export default function Home() {
               <input 
                 type="email" 
                 placeholder="your@email.com" 
-                className="flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-full text-white placeholder:text-white/30 focus:outline-none focus:border-[#A69078] transition-colors"
+                className="flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-full text-white placeholder:text-white/30 focus:outline-none focus:border-tea-brown transition-colors"
               />
-              <button className="px-8 py-4 bg-[#A69078] hover:bg-[#8F7A65] text-white rounded-full font-medium transition-colors">
+              <button className="px-8 py-4 bg-tea-brown hover:bg-tea-deep text-white rounded-full font-medium transition-colors">
                 订阅
               </button>
             </form>
@@ -319,15 +326,15 @@ function CategoryCard({ icon, title, desc, href, delay }: { icon: React.ReactNod
     >
       <Link 
         href={href} 
-        className="block h-full p-10 bg-white rounded-2xl border border-[#E6E0D4] hover:border-[#C19F6E] transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(193,159,110,0.15)]"
+        className="block h-full p-10 bg-card rounded-2xl border border-border hover:border-tea-brown transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(193,159,110,0.15)]"
       >
-        <div className="w-16 h-16 bg-[#F7F5F0] rounded-2xl flex items-center justify-center text-[#24201D] mb-8 group-hover:scale-110 group-hover:bg-[#24201D] group-hover:text-[#C19F6E] transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]">
+        <div className="w-16 h-16 bg-background rounded-2xl flex items-center justify-center text-foreground mb-8 group-hover:scale-110 group-hover:bg-foreground group-hover:text-tea-brown transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]">
           {icon}
         </div>
-        <h3 className="text-2xl font-bold mb-4 text-[#24201D] group-hover:text-[#C19F6E] transition-colors">
+        <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-tea-brown transition-colors">
           {title}
         </h3>
-        <p className="text-[#6E6862] text-base leading-relaxed font-light">
+        <p className="text-text-light text-base leading-relaxed font-light">
           {desc}
         </p>
       </Link>
