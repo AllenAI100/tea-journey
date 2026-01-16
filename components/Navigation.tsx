@@ -32,10 +32,10 @@ export default function Navigation() {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex items-center ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] flex items-center ${
           isScrolled
-            ? 'h-16 bg-[#F6F2EB]/95 backdrop-blur-md shadow-sm border-b border-[#E0D8CC]/50'
-            : 'h-24 bg-gradient-to-b from-[#F6F2EB]/90 to-transparent'
+            ? 'h-16 bg-[#F6F2EB]/80 backdrop-blur-xl backdrop-saturate-150 shadow-[0_1px_2px_rgba(0,0,0,0.02)] border-b border-white/50'
+            : 'h-24 bg-gradient-to-b from-[#F6F2EB] to-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full h-full">

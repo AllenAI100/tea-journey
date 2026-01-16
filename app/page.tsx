@@ -82,34 +82,33 @@ export default function Home() {
             variants={staggerContainer}
           >
             
-          <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl lg:text-9xl mb-6 font-serif tracking-tight text-[#2C2824] drop-shadow-xl">
-            茶 <span className="text-[#A69078] font-light">&</span> 旅
+          <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl lg:text-9xl mb-6 font-serif tracking-tight text-[#24201D] mix-blend-multiply opacity-90">
+            茶 <span className="text-[#8F7859] font-light italic">&</span> 旅
           </motion.h1>
           
           <motion.div variants={fadeInUp} className="flex flex-col gap-2 mb-10">
-            <p className="text-xl md:text-2xl text-[#1A1816] font-medium tracking-wide drop-shadow-md">
-              从代码世界回归<span className="font-normal text-[#1A1816] border-b-2 border-[#A69078] pb-1">山野</span>
+            <p className="text-xl md:text-2xl text-[#24201D] font-medium tracking-wide">
+              从代码世界回归<span className="font-normal text-[#24201D] border-b border-[#8F7859] pb-0.5 mx-1">山野</span>
               的探索手记
             </p>
-            <p className="text-sm md:text-base text-[#2C2824] font-semibold tracking-widest uppercase opacity-90 mt-4 font-sans drop-shadow-sm">
+            <p className="text-sm md:text-base text-[#6E6862] font-medium tracking-[0.2em] uppercase opacity-80 mt-4 font-sans">
               A journey from tech world to tea mountains
             </p>
           </motion.div>
           
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12">
             <Link 
               href="/about" 
-              className="group relative px-8 py-3 bg-[#1A1816] text-[#F6F2EB] rounded-full overflow-hidden transition-all hover:shadow-lg hover:shadow-[#1A1816]/20"
+              className="group relative px-10 py-4 bg-[#24201D] text-[#EAE6DF] rounded-full overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-[#24201D]/20 hover:-translate-y-1"
             >
-              <span className="relative z-10 font-medium tracking-wide flex items-center gap-2">
-                阅读我的转型故事 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <span className="relative z-10 font-medium tracking-wide flex items-center gap-3 text-lg">
+                阅读我的转型故事 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
-              <div className="absolute inset-0 bg-[#3A3634] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
             </Link>
             
             <Link 
               href="/subscribe" 
-              className="group px-8 py-3 bg-white/50 backdrop-blur-sm border border-[#1A1816]/10 text-[#1A1816] rounded-full hover:bg-white transition-all font-medium tracking-wide"
+              className="group px-10 py-4 bg-transparent border border-[#24201D]/20 text-[#24201D] rounded-full hover:bg-[#24201D]/5 hover:border-[#24201D] transition-all duration-500 font-medium tracking-wide text-lg backdrop-blur-sm"
             >
               加入品茗圈
             </Link>
@@ -159,8 +158,8 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-serif text-[#2C2824] mb-2">精选专栏</h2>
-              <p className="text-[#A69078] tracking-widest uppercase text-xs font-semibold">Featured Stories</p>
+              <h2 className="text-3xl md:text-4xl font-serif text-[#24201D] mb-2">精选专栏</h2>
+              <p className="text-[#8F7859] tracking-widest uppercase text-xs font-semibold">Featured Stories</p>
             </motion.div>
             
             <motion.div
@@ -169,7 +168,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="hidden md:block"
             >
-              <Link href="/essays" className="group flex items-center gap-2 text-[#5A5654] hover:text-[#1A1816] transition-colors">
+              <Link href="/essays" className="group flex items-center gap-2 text-[#6E6862] hover:text-[#24201D] transition-colors">
                 查看全部 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -184,29 +183,29 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
               >
-                <Link href={article.path} className="group block">
+                <Link href={article.path} className="group block h-full">
                   <article className="h-full flex flex-col">
-                    <div className="aspect-[4/3] overflow-hidden rounded-xl bg-[#D4C8B5] mb-6 relative">
-                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10 duration-500" />
+                    <div className="aspect-[4/3] overflow-hidden rounded-xl bg-[#D9CDB8] mb-6 relative shadow-sm group-hover:shadow-md transition-shadow duration-500">
+                      <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10 duration-500" />
                       <Image
                         src={article.image}
                         alt={article.title}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
-                        className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                        className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                       />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
-                        <span className="h-px w-6 bg-[#A69078]"></span>
-                        <span className="text-xs uppercase tracking-widest text-[#A69078] font-bold">
+                        <span className="h-px w-6 bg-[#C19F6E]"></span>
+                        <span className="text-xs uppercase tracking-widest text-[#C19F6E] font-bold">
                           {article.category}
                         </span>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-serif mb-3 group-hover:text-[#A69078] transition-colors text-[#2C2824] leading-tight">
+                      <h3 className="text-xl md:text-2xl font-serif mb-3 text-[#24201D] leading-tight group-hover:text-[#58664A] transition-colors duration-300">
                         {article.title}
                       </h3>
-                      <p className="text-[#5A5654] text-sm leading-relaxed line-clamp-3 font-light">
+                      <p className="text-[#6E6862] text-sm leading-relaxed line-clamp-3 font-light">
                         {article.excerpt}
                       </p>
                     </div>
@@ -320,15 +319,15 @@ function CategoryCard({ icon, title, desc, href, delay }: { icon: React.ReactNod
     >
       <Link 
         href={href} 
-        className="block h-full p-8 bg-white rounded-2xl border border-[#E6E0D6] hover:border-[#A69078]/50 hover:shadow-xl hover:shadow-[#A69078]/10 transition-all duration-300 group"
+        className="block h-full p-10 bg-white rounded-2xl border border-[#E6E0D4] hover:border-[#C19F6E] transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(193,159,110,0.15)]"
       >
-        <div className="w-16 h-16 bg-[#F6F2EB] rounded-full flex items-center justify-center text-[#1A1816] mb-6 group-hover:scale-110 group-hover:bg-[#1A1816] group-hover:text-[#A69078] transition-all duration-300">
+        <div className="w-16 h-16 bg-[#F7F5F0] rounded-2xl flex items-center justify-center text-[#24201D] mb-8 group-hover:scale-110 group-hover:bg-[#24201D] group-hover:text-[#C19F6E] transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]">
           {icon}
         </div>
-        <h3 className="text-xl font-bold mb-3 text-[#1A1816] group-hover:text-[#A69078] transition-colors">
+        <h3 className="text-2xl font-bold mb-4 text-[#24201D] group-hover:text-[#C19F6E] transition-colors">
           {title}
         </h3>
-        <p className="text-[#5A5654] text-sm leading-relaxed font-light">
+        <p className="text-[#6E6862] text-base leading-relaxed font-light">
           {desc}
         </p>
       </Link>
