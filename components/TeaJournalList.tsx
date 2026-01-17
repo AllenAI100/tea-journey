@@ -39,58 +39,60 @@ export default function TeaJournalList({ posts, categories }: TeaJournalListProp
         ))}
       </div>
       
-      {/* Featured Statement - 杂志引言风格 */}
-      <div className="mb-20 p-8 md:p-10 bg-bg-soft rounded-xl text-center border border-border relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-tea-brown/40 to-transparent"></div>
-        <p className="text-text-body font-serif text-lg md:text-xl leading-relaxed italic relative z-10">
-          <span className="text-tea-brown font-medium not-italic block mb-3 text-sm tracking-widest uppercase">My Philosophy</span>
-          “顺应天时，尊重风土。不追求工业化的标准答案，只寻找大自然的本真风味。”
-        </p>
-      </div>
-      
-      <div className="grid gap-12">
-        {filteredList.map((post, index) => (
-          <motion.div
-            key={post.slug}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-          >
-            <Link href={post.url} className="group block bg-card p-6 md:p-8 rounded-2xl border border-border hover:border-tea-brown transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(193,159,110,0.15)]">
-              <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
-                <div className="w-full md:w-5/12">
-                  <div className="aspect-[4/3] relative overflow-hidden rounded-lg bg-tea-warm shadow-inner">
-                     <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
-                      />
-                     <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-lg z-10"></div>
+      <div className="grid gap-20">
+        {filteredList.map((post, index) => {
+          const isEven = index % 2 === 0;
+          return (
+            <motion.div
+              key={post.slug}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
+            >
+              <Link href={post.url} className="group block">
+                <article className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-16 items-center`}>
+                  
+                  {/* Image Section */}
+                  <div className="w-full lg:w-3/5">
+                    <div className="aspect-[3/2] relative overflow-hidden rounded-2xl shadow-xl shadow-tea-brown/10 group-hover:shadow-2xl group-hover:shadow-tea-brown/20 transition-all duration-500">
+                       <Image
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          className="object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                        />
+                       {/* 叠加微弱的纹理，增加质感 */}
+                       <div className="absolute inset-0 bg-gradient-to-tr from-black/10 to-transparent opacity-50"></div>
+                    </div>
                   </div>
-                </div>
-                <div className="w-full md:w-7/12 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-4 text-xs tracking-widest text-tea-brown uppercase font-mono font-medium">
-                    <span>{format(new Date(post.date), 'yyyy.MM.dd')}</span>
-                    <span className="w-1 h-1 rounded-full bg-tea-brown"></span>
-                    <span>{post.category || 'Journal'}</span>
+
+                  {/* Content Section */}
+                  <div className="w-full lg:w-2/5 flex flex-col justify-center text-center lg:text-left">
+                    <div className={`flex items-center gap-3 mb-6 text-xs tracking-[0.2em] text-tea-brown uppercase font-mono font-medium justify-center ${isEven ? 'lg:justify-start' : 'lg:justify-end'}`}>
+                      <span>{format(new Date(post.date), 'yyyy.MM.dd')}</span>
+                      <span className="w-1 h-1 rounded-full bg-tea-brown"></span>
+                      <span>{post.category || 'Journal'}</span>
+                    </div>
+                    
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight group-hover:text-primary transition-colors duration-300">
+                      {post.title}
+                    </h2>
+                    
+                    <p className="text-text-light font-soft text-lg leading-relaxed mb-8 line-clamp-4 font-light">
+                      {post.excerpt}
+                    </p>
+                    
+                    <div className={`flex items-center text-foreground font-medium group-hover:translate-x-2 transition-transform duration-300 justify-center ${isEven ? 'lg:justify-start' : 'lg:justify-end'}`}>
+                      <span className="text-sm tracking-widest border-b border-foreground pb-1 group-hover:border-primary group-hover:text-primary transition-colors">READ MORE</span>
+                      <ArrowRight className="w-4 h-4 ml-3 text-tea-brown" />
+                    </div>
                   </div>
-                  <h2 className="text-2xl md:text-3xl text-foreground mb-4 group-hover:text-primary transition-colors duration-300 leading-tight">
-                    {post.title}
-                  </h2>
-                  <p className="text-text-light font-soft font-light leading-relaxed mb-8 line-clamp-3 text-base">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center text-foreground text-sm font-medium group-hover:translate-x-2 transition-transform duration-300">
-                    <span className="border-b border-foreground pb-0.5 group-hover:border-primary group-hover:text-primary transition-colors">阅读全文</span>
-                    <ArrowRight className="w-4 h-4 ml-2 text-tea-brown" />
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-        ))}
+                </article>
+              </Link>
+            </motion.div>
+          );
+        })}
       </div>
     </>
   );

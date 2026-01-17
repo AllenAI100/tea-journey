@@ -5,7 +5,7 @@ import Navigation from '@/components/Navigation';
 import PageHeader from '@/components/PageHeader';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Quote } from 'lucide-react';
 
 const essaysList = [
   {
@@ -42,8 +42,8 @@ export default function EssaysPage() {
         description="在喧嚣之外，重建内心的秩序。记录那些不一定正确，但一定真实的思考片段。"
       />
 
-      <main className="max-w-4xl mx-auto px-6 py-20 relative z-30">
-        <div className="grid gap-10">
+      <main className="max-w-6xl mx-auto px-6 py-20 relative z-30">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           {essaysList.map((post, index) => (
             <motion.div
               key={post.path}
@@ -52,26 +52,35 @@ export default function EssaysPage() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
             >
-              <Link href={post.path} className="group block">
-                <article className="bg-card p-8 md:p-10 rounded-2xl border border-border hover:border-tea-brown hover:shadow-[0_20px_40px_-15px_rgba(193,159,110,0.15)] hover:-translate-y-1 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]">
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="text-xs uppercase tracking-widest text-tea-brown font-bold font-mono">
+              <Link href={post.path} className="group block h-full">
+                <article className="h-full bg-card p-8 md:p-10 rounded-2xl border border-border hover:border-tea-brown hover:shadow-[0_20px_40px_-15px_rgba(193,159,110,0.15)] hover:-translate-y-1 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] flex flex-col relative overflow-hidden">
+                  
+                  {/* 装饰背景：巨大的引号水印 */}
+                  <Quote className="absolute top-6 right-8 w-24 h-24 text-tea-brown/5 rotate-180 pointer-events-none transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110" />
+                  
+                  {/* 顶部元数据 */}
+                  <div className="flex items-center justify-between mb-8 relative z-10">
+                    <span className="text-xs uppercase tracking-widest text-tea-brown font-bold font-mono py-1 px-3 border border-tea-brown/20 rounded-full bg-tea-brown/5">
                       {post.category}
                     </span>
-                    <span className="h-px w-4 bg-border"></span>
-                    <span className="text-sm text-text-faint font-mono">{post.date}</span>
+                    <time className="text-xs text-text-faint font-mono tracking-wider">
+                      {post.date}
+                    </time>
                   </div>
                   
-                  <h2 className="text-2xl md:text-3xl font-serif mb-4 text-foreground group-hover:text-primary transition-colors leading-tight">
-                    {post.title}
-                  </h2>
-                  <p className="text-text-light font-soft leading-relaxed font-light mb-8 line-clamp-2 text-base">
-                    {post.excerpt}
-                  </p>
+                  {/* 核心内容：引言式摘要 */}
+                  <div className="flex-1 mb-8 relative z-10">
+                    <p className="text-xl md:text-2xl text-foreground font-soft font-light leading-relaxed line-clamp-4 group-hover:text-primary transition-colors duration-300">
+                      “{post.excerpt}”
+                    </p>
+                  </div>
                   
-                  <div className="flex items-center text-foreground font-medium group-hover:translate-x-2 transition-transform duration-300">
-                    <span className="text-sm tracking-wide border-b border-foreground pb-0.5 group-hover:border-primary group-hover:text-primary transition-colors">阅读全文</span>
-                    <ArrowRight className="w-4 h-4 ml-2 text-tea-brown" />
+                  {/* 底部署名/标题 */}
+                  <div className="pt-6 border-t border-border mt-auto relative z-10 flex items-center justify-between group-hover:border-primary/20 transition-colors">
+                    <h2 className="text-sm font-bold tracking-wide text-text-light group-hover:text-foreground transition-colors">
+                      {post.title}
+                    </h2>
+                    <ArrowRight className="w-4 h-4 text-tea-brown opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                   </div>
                 </article>
               </Link>

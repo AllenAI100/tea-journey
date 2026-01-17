@@ -18,7 +18,7 @@ export default function TeaJournalPage() {
       <Navigation />
       
       <PageHeader
-        title="做茶日记"
+        title="习茶笔记"
         englishTitle="Tea Journal"
         description="记录每一次水与叶的相遇。在制茶与品鉴中，重新学习敬畏自然。"
       />
