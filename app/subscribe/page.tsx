@@ -113,37 +113,6 @@ export default function SubscribePage() {
               <p className="text-tea-brown font-medium">¥128/份</p>
             </div>
           </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Tea Products */}
-        <div className="p-8 bg-bg-warm rounded-2xl border border-border">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-serif text-foreground mb-2">
-              对我的茶感兴趣？
-            </h2>
-            <p className="text-text-light">
-              产地可靠、工艺正宗、品质稳定
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-            <div className="bg-card rounded-xl p-6 shadow-sm border border-border">
-              <h3 className="font-serif text-lg text-foreground mb-1">
-                武夷岩茶 · 大红袍
-              </h3>
-              <p className="text-sm text-text-light mb-3">岩韵明显，回甘持久</p>
-              <p className="text-tea-brown font-medium">¥168/份</p>
-            </div>
-            <div className="bg-card rounded-xl p-6 shadow-sm border border-border">
-              <h3 className="font-serif text-lg text-foreground mb-1">
-                正山小种
-              </h3>
-              <p className="text-sm text-text-light mb-3">松烟香气，醇厚甘甜</p>
-              <p className="text-tea-brown font-medium">¥128/份</p>
-            </div>
-          </div>
 
           <div className="text-center">
             <a

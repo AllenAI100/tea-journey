@@ -4,9 +4,9 @@ export { isType } from 'contentlayer2/client'
 
 // NOTE During development Contentlayer imports from `.mjs` files to improve HMR speeds.
 // During (production) builds Contentlayer it imports from `.json` files to improve build performance.
-import { allReadings } from './Reading/_index.mjs'
-import { allTeaJournals } from './TeaJournal/_index.mjs'
-import { allEssays } from './Essay/_index.mjs'
+import allReadings from './Reading/_index.json' with { type: 'json' }
+import allTeaJournals from './TeaJournal/_index.json' with { type: 'json' }
+import allEssays from './Essay/_index.json' with { type: 'json' }
 
 export { allReadings, allTeaJournals, allEssays }
 

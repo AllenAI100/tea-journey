@@ -104,7 +104,6 @@ export default function Home() {
               
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mt-auto">
                 <Link 
-                  href="/tea-journal"  
                   href="/tea-journal" 
                   className="group relative px-8 py-3 bg-foreground text-background rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
                 >
