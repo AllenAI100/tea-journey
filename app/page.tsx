@@ -49,21 +49,21 @@ export default function Home() {
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section - Magazine Style (Image Left, Text Right) */}
-      <section className="relative bg-background-soft overflow-hidden pt-28 pb-12 md:pt-32 md:pb-20">
+      <section className="relative bg-background-soft overflow-hidden pt-24 pb-12 md:pt-[6.5rem] md:pb-12">
         {/* 背景纹理 */}
         <div className="absolute inset-0 grain-texture opacity-50 pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 lg:items-stretch">
             
             {/* 左侧：视觉区 (7 cols) */}
             <motion.div 
-              className="lg:col-span-7 order-1 lg:order-1 relative"
+              className="lg:col-span-7 order-1 lg:order-1 relative h-full min-h-[400px]"
               initial={{ opacity: 0, scale: 0.98, x: -20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1] }}
             >
-              <div className="relative aspect-[3/2] md:aspect-[16/10] w-full shadow-2xl shadow-foreground/10 rounded-2xl overflow-hidden">
+              <div className="relative w-full h-full shadow-2xl shadow-foreground/10 rounded-2xl overflow-hidden">
                 <Image
                   src="/images/tea-mountain.jpg"
                   alt="茶山远景"
@@ -79,29 +79,32 @@ export default function Home() {
 
             {/* 右侧：文字区 (5 cols) */}
             <motion.div
-              className="lg:col-span-5 text-center lg:text-left order-2 lg:order-2 flex flex-col"
+              className="lg:col-span-5 text-center lg:text-left order-2 lg:order-2 flex flex-col h-full"
               initial="initial"
               animate="animate"
               variants={staggerContainer}
             >
-              <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight text-foreground leading-[1.15]">
-                从代码逻辑<br/>
-                到<span className="font-handwriting text-primary relative inline-block px-2 transform scale-110">
-                  自然韵律
-                  <svg className="absolute -bottom-2 left-0 w-full h-2 text-accent-gold/40" viewBox="0 0 100 10" preserveAspectRatio="none">
-                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
-                  </svg>
-                </span>
-              </motion.h1>
+              <div>
+                <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight text-foreground leading-[1.15] -mt-2">
+                  从代码逻辑<br/>
+                  到<span className="font-handwriting text-primary relative inline-block px-2 transform scale-110">
+                    自然韵律
+                    <svg className="absolute -bottom-2 left-0 w-full h-2 text-accent-gold/40" viewBox="0 0 100 10" preserveAspectRatio="none">
+                      <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
+                    </svg>
+                  </span>
+                </motion.h1>
+                
+                <motion.div variants={fadeInUp} className="flex flex-col gap-4 mb-8">
+                  <p className="text-base md:text-lg text-text-light font-light leading-relaxed max-w-lg mx-auto lg:mx-0">
+                    一场关于技术与茶的跨界实验。在这里，我们用 debug 的思维审视制茶工艺，用重构的视角打磨生活方式。
+                  </p>
+                </motion.div>
+              </div>
               
-              <motion.div variants={fadeInUp} className="flex flex-col gap-4 mb-8">
-                <p className="text-base md:text-lg text-text-light font-light leading-relaxed max-w-lg mx-auto lg:mx-0">
-                  一场关于技术与茶的跨界实验。在这里，我们用 debug 的思维审视制茶工艺，用重构的视角打磨生活方式。
-                </p>
-              </motion.div>
-              
-              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mt-auto">
                 <Link 
+                  href="/tea-journal"  
                   href="/tea-journal" 
                   className="group relative px-8 py-3 bg-foreground text-background rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
                 >
@@ -122,15 +125,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 滚动提示 */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 8, 0] }}
-          transition={{ delay: 1.5, duration: 2, repeat: Infinity }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 text-foreground/30"
-        >
-          <ChevronDown className="w-6 h-6" />
-        </motion.div>
       </section>
 
       {/* Philosophy / Intro */}
@@ -139,17 +133,17 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl mb-10 font-serif text-foreground">
+            <h2 className="text-3xl md:text-4xl mb-10 font-bold text-foreground">
               一场逃离算法的<br/>
               <span className="italic text-tea-brown">回归之旅</span>
             </h2>
             <p className="text-lg text-text-light leading-relaxed mx-auto max-w-[65ch] font-light">
               在快节奏的科技世界穿行多年后，我选择放慢脚步，走进云南古老的茶山。
               <br/><br/>
-              这里没有即时的 <span className="italic font-serif">Response</span>，只有需要耐心等待的 <span className="italic font-serif">Fermentation</span>（发酵）。
+              这里没有即时的 <span className="italic font-bold">Response</span>，只有需要耐心等待的 <span className="italic font-bold">Fermentation</span>（发酵）。
               TeaJourney 是我从技术思维转身，重新理解生活温度的实验记录。
             </p>
           </motion.div>
@@ -165,7 +159,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-2">精选专栏</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">精选专栏</h2>
               <p className="text-tea-deep tracking-widest uppercase text-xs font-semibold">Featured Stories</p>
             </motion.div>
             
@@ -209,7 +203,7 @@ export default function Home() {
                           {article.category}
                         </span>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-serif mb-3 text-foreground leading-tight group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground leading-tight group-hover:text-primary transition-colors duration-300">
                         {article.title}
                       </h3>
                       <p className="text-text-light text-sm leading-relaxed line-clamp-3 font-light">
@@ -239,7 +233,7 @@ export default function Home() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-4 font-serif text-foreground">
+            <h2 className="text-3xl md:text-4xl mb-4 font-bold text-foreground">
               构建你的知识库
             </h2>
             <p className="text-text-light max-w-lg mx-auto">
@@ -286,7 +280,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-5xl font-serif mb-6 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
               每两周，<br/>
               发送一份<span className="text-tea-brown italic">生活重构报告</span>
             </h2>

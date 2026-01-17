@@ -128,7 +128,7 @@ export default function Navigation() {
                   key={item.path}
                   href={item.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-xl font-serif text-[#1A1816] hover:text-[#A69078] transition-colors"
+                  className="text-xl font-bold text-foreground hover:text-tea-brown transition-colors"
                 >
                   {item.name}
                 </Link>

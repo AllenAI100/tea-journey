@@ -48,8 +48,8 @@ export default function TeaStats() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <h3 className="text-lg font-serif tracking-wide text-foreground">
-              当下的<span className="text-tea-brown italic">生活切片</span>
+            <h3 className="text-lg font-bold tracking-wide text-foreground">
+              当下的<span className="text-tea-brown italic font-normal">生活切片</span>
             </h3>
           </div>
           <p className="text-xs text-text-light mt-2 md:mt-0 font-light italic">
@@ -75,7 +75,7 @@ export default function TeaStats() {
                 </div>
                 
                 <div className="mb-2 flex items-baseline">
-                  <span className="text-2xl font-serif text-foreground tracking-tight">
+                  <span className="text-2xl font-bold text-foreground tracking-tight">
                     {stat.value}
                   </span>
                   <span className="ml-2 text-xs text-tea-brown uppercase font-medium">

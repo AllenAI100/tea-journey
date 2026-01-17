@@ -40,7 +40,7 @@ export default function Footer() {
 
           {/* 2. Navigation Section (占 4/12) */}
           <div className="md:col-span-4 md:pl-8">
-            <h4 className="font-serif text-[#1A1816] mb-6">探索</h4>
+            <h4 className="font-bold text-foreground mb-6">探索</h4>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col space-y-3 text-sm">
                 <FooterLink href="/reading" label="读书笔记" />
@@ -56,8 +56,8 @@ export default function Footer() {
 
           {/* 3. Newsletter/CTA (占 3/12) */}
           <div className="md:col-span-3">
-             <h4 className="font-serif text-[#1A1816] mb-6">保持联络</h4>
-             <p className="text-xs text-[#8A8690] mb-4 leading-relaxed">
+             <h4 className="font-bold text-foreground mb-6">保持联络</h4>
+             <p className="text-xs text-text-light mb-4 leading-relaxed">
                每两周发送一次生活重构报告。
                <br/>不贩卖焦虑，只分享思考。
              </p>
