@@ -1,4 +1,5 @@
 import ProfileHero from '@/components/about/ProfileHero';
+import DualPersonality from '@/components/about/DualPersonality';
 import Timeline from '@/components/about/Timeline';
 import Link from 'next/link';
 import { ArrowRight, Mail, Clock, Heart, Anchor, Sun } from 'lucide-react';
@@ -9,21 +10,23 @@ export default function AboutPage() {
       {/* 1. Hero: 我是谁 */}
       <ProfileHero />
 
-      {/* Philosophy: 顺应天时 */}
-      <section className="py-16 px-6 bg-bg-soft border-y border-border">
+      {/* 2. Dual Personality: 核心叙事 (算法 vs 茶) */}
+      <DualPersonality />
+
+      {/* 3. Philosophy: 顺应天时 (已下移) */}
+      <section className="py-20 px-6 bg-bg-soft border-y border-border">
         <div className="max-w-4xl mx-auto text-center relative overflow-hidden p-8">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-tea-brown/40 to-transparent"></div>
-          <p className="text-text-body font-soft text-xl md:text-2xl leading-relaxed italic relative z-10">
-            <span className="text-tea-brown font-medium not-italic block mb-4 text-sm tracking-widest uppercase font-sans">My Philosophy</span>
+          <p className="text-text-body font-soft text-xl md:text-3xl leading-relaxed italic relative z-10">
+            <span className="text-tea-brown font-medium not-italic block mb-6 text-sm tracking-widest uppercase font-sans">My Philosophy</span>
             “顺应天时，尊重风土。不追求工业化的标准答案，只寻找大自然的本真风味。”
           </p>
         </div>
       </section>
 
-      {/* 2. Journey: 时间轴 */}
+      {/* 4. Journey: 时间轴 */}
       <Timeline />
       
-      {/* 3. Values: 核心价值观 (重构为纯生活哲学) */}
+      {/* 5. Values: 核心价值观 (重构为纯生活哲学) */}
       <section className="py-24 px-6 bg-card grain-texture border-y border-border">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-foreground mb-4">我相信的原则</h2>

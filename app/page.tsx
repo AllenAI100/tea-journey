@@ -97,7 +97,9 @@ export default function Home() {
                 
                 <motion.div variants={fadeInUp} className="flex flex-col gap-4 mb-8">
                   <p className="text-base md:text-lg text-text-light font-light leading-relaxed max-w-lg mx-auto lg:mx-0">
-                    一场关于技术与茶的跨界实验。在这里，我们用 debug 的思维审视制茶工艺，用重构的视角打磨生活方式。
+                    用 Debug 的思维审视制茶，用重构的视角打磨生活。
+                    <br className="hidden md:block"/>
+                    一个技术人的生活实验报告。
                   </p>
                 </motion.div>
               </div>
@@ -114,7 +116,7 @@ export default function Home() {
                 
                 <Link 
                   href="/about" 
-                  className="group px-8 py-3 text-foreground font-medium tracking-wide flex items-center gap-2 text-sm md:text-base hover:text-primary transition-colors"
+                  className="group px-8 py-3 text-foreground font-medium tracking-wide flex items-center gap-2 text-sm md:text-base border border-border bg-background/50 hover:bg-background hover:border-foreground/20 rounded-full transition-all"
                 >
                   了解作者
                 </Link>
@@ -136,15 +138,27 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-3xl md:text-4xl mb-10 font-bold text-foreground">
-              一场逃离算法的<br/>
-              <span className="italic text-tea-brown">回归之旅</span>
+              在这个万物互联的时代<br/>
+              <span className="italic text-tea-brown">重建内心的秩序</span>
             </h2>
-            <p className="text-lg text-text-light leading-relaxed mx-auto max-w-[65ch] font-light">
-              在快节奏的科技世界穿行多年后，我选择放慢脚步，走进云南古老的茶山。
+            <p className="text-lg text-text-light leading-relaxed mx-auto max-w-[65ch] font-light mb-10">
+              曾经，我试图用算法预测未来。现在，我学会等待一泡茶的自然发酵。
               <br/><br/>
-              这里没有即时的 <span className="italic font-bold">Response</span>，只有需要耐心等待的 <span className="italic font-bold">Fermentation</span>（发酵）。
-              TeaJourney 是我从技术思维转身，重新理解生活温度的实验记录。
+              <span className="font-bold text-foreground">Tea Journey</span> 不是为了逃离技术，而是为了寻找更落地的生活支点。
             </p>
+
+            {/* Core Values Tags */}
+            <div className="flex flex-wrap justify-center gap-3">
+              <span className="px-4 py-2 rounded-full bg-primary/5 border border-primary/20 text-primary text-sm font-medium tracking-wide">
+                #代码与风土
+              </span>
+              <span className="px-4 py-2 rounded-full bg-tea-brown/5 border border-tea-brown/20 text-tea-brown text-sm font-medium tracking-wide">
+                #效率与温度
+              </span>
+              <span className="px-4 py-2 rounded-full bg-accent-coral/5 border border-accent-coral/20 text-accent-coral text-sm font-medium tracking-wide">
+                #理性与感性
+              </span>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -233,32 +247,32 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl mb-4 font-bold text-foreground">
-              构建你的知识库
+              阅读 · 思考 · 修行
             </h2>
             <p className="text-text-light max-w-lg mx-auto">
-              就像整理代码模块一样，我将生活分为三个命名空间。
+              我用这三种方式，与世界保持连接。
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <CategoryCard 
               icon={<BookOpen className="w-8 h-8" />}
-              title="读书笔记"
-              desc="商业、哲学与底层逻辑的重构"
+              title="深度阅读"
+              desc="输入：在字里行间，寻找商业与哲学的底层逻辑。"
               href="/reading"
               delay={0.1}
             />
             <CategoryCard 
               icon={<PenTool className="w-8 h-8" />}
-              title="生活随笔"
-              desc="Debug 生活，记录思考的堆栈"
+              title="内省时刻"
+              desc="内化：记录生活中的顿悟，Debug 内心的秩序。"
               href="/essays"
               delay={0.2}
             />
             <CategoryCard 
               icon={<Coffee className="w-8 h-8" />}
-              title="做茶日记"
-              desc="以严谨参数定义一杯好茶"
+              title="习茶修行"
+              desc="输出：以严谨参数定义好茶，以身体感知风土。"
               href="/tea-journal"
               delay={0.3}
             />
@@ -281,24 +295,25 @@ export default function Home() {
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
               每两周，<br/>
-              发送一份<span className="text-tea-brown italic">生活重构报告</span>
+              一封关于<span className="text-tea-brown font-soft font-normal">生活重构</span>的信
             </h2>
-            <p className="text-lg text-background/60 mb-10 font-light max-w-xl mx-auto">
+            <p className="text-lg text-background/80 mb-10 font-light font-soft max-w-2xl mx-auto leading-relaxed">
               不贩卖焦虑，只分享经过深度思考的观点、值得一读的好书，
-              以及我又发现了哪款好茶。
+              <br className="hidden md:block" />
+              以及那杯能让你慢下来的好茶。
             </p>
             
-            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <form className="w-full max-w-lg mx-auto flex flex-col sm:flex-row gap-4">
               <input 
                 type="email" 
                 placeholder="your@email.com" 
-                className="flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-full text-white placeholder:text-white/30 focus:outline-none focus:border-tea-brown transition-colors"
+                className="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-full text-white placeholder:text-white/40 focus:outline-none focus:border-tea-brown transition-colors"
               />
-              <button className="px-8 py-4 bg-tea-brown hover:bg-tea-deep text-white rounded-full font-medium transition-colors">
+              <button className="px-8 py-4 bg-tea-brown hover:bg-tea-deep text-white rounded-full font-medium transition-colors whitespace-nowrap shadow-lg shadow-tea-brown/20">
                 订阅
               </button>
             </form>
-            <p className="mt-4 text-xs text-white/30">
+            <p className="mt-6 text-xs text-white/40 font-mono tracking-wide">
               * 承诺不发送垃圾邮件。随时可以 `unsubscribe`。
             </p>
           </motion.div>
