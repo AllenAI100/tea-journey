@@ -295,7 +295,7 @@ export default function Home() {
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight text-tea-brown font-soft font-normal">
               每两周，<br/>
-              一封关于<span className="italic">生活重构</span>的信
+              一封关于<span className="italic text-white">生活重构</span>的信
             </h2>
             <p className="text-lg text-background/80 mb-10 font-light font-soft max-w-2xl mx-auto leading-relaxed">
               不贩卖焦虑，只分享经过深度思考的观点、值得一读的好书，
@@ -303,19 +303,21 @@ export default function Home() {
               以及那杯能让你慢下来的好茶。
             </p>
             
-            <form className="w-full max-w-lg mx-auto flex flex-col sm:flex-row gap-4">
-              <input 
-                type="email" 
-                placeholder="your@email.com" 
-                className="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-full text-white placeholder:text-white/40 focus:outline-none focus:border-tea-brown transition-colors"
-              />
-              <button className="px-8 py-4 bg-tea-brown hover:bg-tea-deep text-white rounded-full font-medium transition-colors whitespace-nowrap shadow-lg shadow-tea-brown/20">
-                订阅
-              </button>
-            </form>
-            <p className="mt-6 text-xs text-white/40 font-mono tracking-wide">
-              * 承诺不发送垃圾邮件。随时可以 `unsubscribe`。
-            </p>
+            <div className="w-full max-w-lg mx-auto">
+              <form className="flex flex-col sm:flex-row gap-4">
+                <input 
+                  type="email" 
+                  placeholder="your@email.com" 
+                  className="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-full text-white placeholder:text-white/40 focus:outline-none focus:border-tea-brown transition-colors"
+                />
+                <button className="px-8 py-4 bg-tea-brown hover:bg-tea-deep text-white rounded-full font-medium transition-colors whitespace-nowrap shadow-lg shadow-tea-brown/20">
+                  订阅
+                </button>
+              </form>
+              <p className="mt-4 text-xs text-white/40 font-mono tracking-wide text-left pl-6">
+                * 承诺不发送垃圾邮件。随时可以 `unsubscribe`。
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>

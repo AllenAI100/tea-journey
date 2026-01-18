@@ -5,90 +5,116 @@ import Navigation from '@/components/Navigation';
 import PageHeader from '@/components/PageHeader';
 import AudioPlayer from '@/components/AudioPlayer';
 import { motion } from 'framer-motion';
-import { Mic, Play } from 'lucide-react';
+import { Mic, Play, Headphones, Radio } from 'lucide-react';
 import { episodes } from '@/lib/podcast-data';
 import Link from 'next/link';
 
 export default function PodcastPage() {
   return (
-    <div className="min-h-screen bg-[#F6F2EB]">
+    <div className="min-h-screen bg-background grain-texture">
       <Navigation />
       
       <PageHeader
         title="茶与白噪音"
-        englishTitle="Podcast"
+        englishTitle="Tea & White Noise"
         description="声音是比文字更直接的温度。用一杯茶的时间，听见内心的声音。"
-        image="https://images.unsplash.com/photo-1478737270239-2f02b77ac6d5?w=1600&q=80"
+        className="bg-bg-soft" // 覆盖默认背景
       />
 
-      <main className="max-w-4xl mx-auto px-6 py-16 -mt-10 relative z-30">
-        {/* Intro Card */}
+      <main className="max-w-5xl mx-auto px-6 py-16 -mt-20 relative z-30">
+        
+        {/* Intro Card - 模拟录音室氛围 */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white p-8 md:p-12 rounded-3xl border border-[#E0D8CC] shadow-xl shadow-[#A69078]/5 mb-16 text-center"
+          transition={{ duration: 0.8 }}
+          className="bg-card p-8 md:p-12 rounded-3xl border border-border shadow-xl shadow-tea-brown/5 mb-20 text-center relative overflow-hidden"
         >
-          <Mic className="w-8 h-8 text-[#A69078] mx-auto mb-6" />
-          <h2 className="text-2xl md:text-3xl font-serif text-[#2C2824] mb-6">
-            为什么要开始这档播客？
-          </h2>
-          <p className="text-[#5A5654] leading-relaxed max-w-2xl mx-auto mb-10">
-            在短视频充斥的时代，我们失去了“长谈”的耐心。
-            <br />
-            这里没有倍速，只有真实的思考与煮水声。
-          </p>
-          
-          {/* Latest Episode Player (播放最新一期) */}
-          <AudioPlayer 
-            src={episodes[0].audioUrl} 
-            title={`最新单集: ${episodes[0].title}`}
-          />
+          {/* 背景声波装饰 */}
+          <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none flex items-center justify-center gap-1">
+             {[...Array(20)].map((_, i) => (
+                <div key={i} className="w-2 bg-foreground animate-pulse" style={{ height: `${Math.random() * 60 + 20}%`, animationDuration: `${Math.random() * 1 + 0.5}s` }}></div>
+             ))}
+          </div>
+
+          <div className="relative z-10">
+            <div className="w-12 h-12 bg-bg-warm rounded-full flex items-center justify-center mx-auto mb-6 text-tea-brown">
+               <Mic className="w-6 h-6" />
+            </div>
+            
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+              为什么要开始这档播客？
+            </h2>
+            <p className="text-text-light leading-relaxed max-w-2xl mx-auto mb-10 font-soft text-lg">
+              在短视频充斥的时代，我们失去了“长谈”的耐心。
+              <br />
+              这里没有倍速，只有真实的思考与煮水声。
+            </p>
+            
+            {/* Latest Episode Player (播放最新一期) - 增加阴影和层级 */}
+            <div className="max-w-2xl mx-auto bg-bg-soft rounded-2xl p-2 border border-border shadow-inner">
+               <AudioPlayer 
+                 src={episodes[0].audioUrl} 
+                 title={`最新单集: ${episodes[0].title}`}
+               />
+            </div>
+          </div>
         </motion.div>
 
         {/* Episode List (节目列表) */}
-        <div className="mb-16">
-          <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-2xl font-serif text-[#2C2824]">往期节目</h2>
-            <div className="h-px flex-1 bg-[#E0D8CC]"></div>
+        <div className="mb-20">
+          <div className="flex items-center justify-between mb-10">
+            <h2 className="text-2xl font-bold text-foreground flex items-center gap-3">
+              <Radio className="w-6 h-6 text-tea-brown" />
+              往期节目
+            </h2>
+            <div className="h-px flex-1 bg-border ml-6 opacity-50"></div>
           </div>
           
-          <div className="grid gap-6">
+          <div className="grid gap-8">
             {episodes.map((ep, index) => (
               <motion.div
                 key={ep.slug}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
                 <Link href={`/podcast/${ep.slug}`} className="group block">
-                  <article className="flex flex-col md:flex-row gap-6 bg-[#F9F7F4] p-6 rounded-2xl border border-transparent hover:border-[#A69078]/30 hover:bg-white hover:shadow-md transition-all duration-300">
-                    {/* 封面图 */}
-                    <div className="w-full md:w-48 aspect-square rounded-xl overflow-hidden flex-shrink-0 bg-[#E0D8CC]">
+                  <article className="flex flex-col md:flex-row gap-8 bg-card p-6 md:p-8 rounded-2xl border border-border hover:border-tea-brown/50 hover:shadow-lg hover:shadow-tea-brown/5 transition-all duration-500 group-hover:-translate-y-1">
+                    {/* 封面图 - 唱片质感 */}
+                    <div className="w-full md:w-48 aspect-square rounded-xl overflow-hidden flex-shrink-0 bg-bg-warm relative shadow-md group-hover:shadow-xl transition-all duration-500">
                       <img 
                         src={ep.coverImage} 
                         alt={ep.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                       />
+                      {/* 唱片光泽 */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
+                      <div className="absolute bottom-3 right-3 w-8 h-8 bg-black/60 backdrop-blur rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <Play className="w-4 h-4 ml-0.5" />
+                      </div>
                     </div>
                     
                     <div className="flex-1 flex flex-col justify-center">
-                      <div className="flex items-center gap-3 text-xs text-[#A69078] font-mono mb-2 uppercase tracking-wider">
+                      <div className="flex items-center gap-3 text-xs text-tea-brown font-mono mb-3 uppercase tracking-wider font-bold">
+                        <span className="bg-tea-brown/10 px-2 py-1 rounded">VOL.{ep.slug}</span>
                         <span>{ep.date}</span>
-                        <span>•</span>
-                        <span>{ep.duration}</span>
+                        <span className="w-1 h-1 bg-tea-brown rounded-full"></span>
+                        <span className="flex items-center gap-1"><Headphones className="w-3 h-3"/> {ep.duration}</span>
                       </div>
-                      <h3 className="text-xl font-serif text-[#2C2824] mb-3 group-hover:text-[#A69078] transition-colors">
+                      
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                         {ep.title}
                       </h3>
-                      <p className="text-[#5A5654] text-sm leading-relaxed mb-4 line-clamp-2">
+                      
+                      <p className="text-text-light text-base font-soft leading-relaxed mb-6 line-clamp-2">
                         {ep.excerpt}
                       </p>
-                      <div className="flex items-center text-sm font-medium text-[#2C2824] mt-auto">
-                        <div className="w-8 h-8 rounded-full bg-[#2C2824] text-white flex items-center justify-center mr-3 group-hover:bg-[#A69078] transition-colors">
-                          <Play className="w-3 h-3 ml-0.5" />
-                        </div>
-                        收听 / 阅读详情
+                      
+                      <div className="flex items-center text-sm font-medium text-foreground mt-auto group-hover:translate-x-2 transition-transform duration-300">
+                        <span className="border-b border-foreground pb-0.5 group-hover:border-primary group-hover:text-primary transition-colors">查看详情 & 收听</span>
+                        <Play className="w-3 h-3 ml-2 text-tea-brown fill-current" />
                       </div>
                     </div>
                   </article>
@@ -98,25 +124,27 @@ export default function PodcastPage() {
           </div>
         </div>
 
-        {/* Subscribe */}
-        <div className="text-center bg-[#2C2824] text-[#F6F2EB] rounded-2xl p-10 relative overflow-hidden">
+        {/* Subscribe / Footer CTA */}
+        <div className="text-center bg-foreground text-background rounded-3xl p-12 relative overflow-hidden border border-border/10">
           <div className="relative z-10">
-            <h3 className="text-xl font-serif mb-4">想要第一时间收听？</h3>
-            <p className="text-white/60 text-sm mb-6">
+            <h3 className="text-2xl font-bold mb-4 font-soft">想要第一时间收听？</h3>
+            <p className="text-white/60 text-base mb-8 max-w-lg mx-auto font-light">
               节目正在筹备中。订阅邮件，上线时我会通知你。
+              <br/>
+              也可以在 Apple Podcast 和 小宇宙 搜索 "Tea Journey"。
             </p>
-            <button className="px-8 py-3 bg-[#A69078] hover:bg-[#8F7A65] text-white rounded-full font-medium transition-colors text-sm">
-              订阅通知
+            <button className="px-8 py-4 bg-tea-brown hover:bg-tea-deep text-white rounded-full font-medium transition-colors text-sm shadow-lg shadow-tea-brown/20">
+              订阅更新通知
             </button>
           </div>
-          {/* 装饰圆 */}
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/noise.png')] opacity-10"></div>
+          {/* 装饰背景 */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-tea-brown/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
         </div>
       </main>
     </div>
   );
 }
-
 function PlanCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
   return (
     <div className="p-8 bg-[#F0EBE3] rounded-2xl border border-[#E0D8CC] hover:bg-white hover:shadow-lg transition-all duration-300">
