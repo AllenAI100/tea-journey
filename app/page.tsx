@@ -293,9 +293,9 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight text-tea-brown font-soft font-normal">
               每两周，<br/>
-              一封关于<span className="text-tea-brown font-soft font-normal">生活重构</span>的信
+              一封关于<span className="italic">生活重构</span>的信
             </h2>
             <p className="text-lg text-background/80 mb-10 font-light font-soft max-w-2xl mx-auto leading-relaxed">
               不贩卖焦虑，只分享经过深度思考的观点、值得一读的好书，
