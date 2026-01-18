@@ -97,9 +97,9 @@ export default function Home() {
                 
                 <motion.div variants={fadeInUp} className="flex flex-col gap-4 mb-8">
                   <p className="text-base md:text-lg text-text-light font-light leading-relaxed max-w-lg mx-auto lg:mx-0">
-                    用 Debug 的思维审视制茶，用重构的视角打磨生活。
+                    从写代码到做茶。
                     <br className="hidden md:block"/>
-                    一个技术人的生活实验报告。
+                    在这里，记录一个技术人的职业转型与生活实验。
                   </p>
                 </motion.div>
               </div>

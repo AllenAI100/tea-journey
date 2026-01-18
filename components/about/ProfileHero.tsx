@@ -33,11 +33,24 @@ export default function ProfileHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-xl md:text-2xl text-text-light font-light font-soft max-w-2xl mx-auto leading-relaxed"
+          className="text-xl md:text-2xl text-text-light font-light font-soft max-w-2xl mx-auto leading-relaxed mb-16"
         >
           我是 Allen. <br className="md:hidden"/>
           程序员 <span className="text-tea-brown mx-2">/</span> 制茶人 <span className="text-tea-brown mx-2">/</span> 生活观察者
         </motion.p>
+
+        {/* Philosophy Integrated */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="relative py-8 px-4"
+        >
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-tea-brown/50 to-transparent"></div>
+          <p className="text-text-body font-soft text-lg md:text-xl leading-relaxed italic">
+            “从代码到茶，我学会了顺应天时，尊重风土。抛弃工业标准，追寻自然真味。”
+          </p>
+        </motion.div>
       </div>
 
       {/* 背景装饰 */}

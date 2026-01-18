@@ -5,7 +5,7 @@ import Navigation from '@/components/Navigation';
 import PageHeader from '@/components/PageHeader';
 import AudioPlayer from '@/components/AudioPlayer';
 import { motion } from 'framer-motion';
-import { Mic, Play, Headphones, Radio } from 'lucide-react';
+import { Mic, Play, Headphones, Radio, Film, Video } from 'lucide-react';
 import { episodes } from '@/lib/podcast-data';
 import Link from 'next/link';
 
@@ -82,26 +82,48 @@ export default function PodcastPage() {
               >
                 <Link href={`/podcast/${ep.slug}`} className="group block">
                   <article className="flex flex-col md:flex-row gap-8 bg-card p-6 md:p-8 rounded-2xl border border-border hover:border-tea-brown/50 hover:shadow-lg hover:shadow-tea-brown/5 transition-all duration-500 group-hover:-translate-y-1">
-                    {/* 封面图 - 唱片质感 */}
+                    {/* 封面图 - 唱片/胶片质感 */}
                     <div className="w-full md:w-48 aspect-square rounded-xl overflow-hidden flex-shrink-0 bg-bg-warm relative shadow-md group-hover:shadow-xl transition-all duration-500">
                       <img 
                         src={ep.coverImage} 
                         alt={ep.title} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                       />
-                      {/* 唱片光泽 */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
-                      <div className="absolute bottom-3 right-3 w-8 h-8 bg-black/60 backdrop-blur rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <Play className="w-4 h-4 ml-0.5" />
+                      
+                      {/* 媒体类型装饰 */}
+                      {ep.type === 'video' ? (
+                        <>
+                          {/* 胶片齿孔装饰 (上下) */}
+                          <div className="absolute top-0 left-0 w-full h-3 bg-black/80 flex justify-between px-1 items-center">
+                             {[...Array(6)].map((_,i) => <div key={i} className="w-2 h-1.5 bg-white/50 rounded-sm"></div>)}
+                          </div>
+                          <div className="absolute bottom-0 left-0 w-full h-3 bg-black/80 flex justify-between px-1 items-center">
+                             {[...Array(6)].map((_,i) => <div key={i} className="w-2 h-1.5 bg-white/50 rounded-sm"></div>)}
+                          </div>
+                          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                        </>
+                      ) : (
+                        /* 唱片光泽 (音频) */
+                        <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
+                      )}
+
+                      {/* 播放按钮 */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-10 h-10 bg-black/60 backdrop-blur rounded-full flex items-center justify-center text-white">
+                          {ep.type === 'video' ? <Film className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
+                        </div>
                       </div>
                     </div>
                     
                     <div className="flex-1 flex flex-col justify-center">
                       <div className="flex items-center gap-3 text-xs text-tea-brown font-mono mb-3 uppercase tracking-wider font-bold">
-                        <span className="bg-tea-brown/10 px-2 py-1 rounded">VOL.{ep.slug}</span>
+                        <span className="bg-tea-brown/10 px-2 py-1 rounded">VOL.{ep.slug.split('-')[0].replace('ep','')}</span>
                         <span>{ep.date}</span>
                         <span className="w-1 h-1 bg-tea-brown rounded-full"></span>
-                        <span className="flex items-center gap-1"><Headphones className="w-3 h-3"/> {ep.duration}</span>
+                        <span className="flex items-center gap-1">
+                          {ep.type === 'video' ? <Video className="w-3 h-3"/> : <Headphones className="w-3 h-3"/>} 
+                          {ep.duration}
+                        </span>
                       </div>
                       
                       <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">

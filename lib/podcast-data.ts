@@ -7,11 +7,30 @@ export interface PodcastEpisode {
   coverImage: string;
   audioUrl: string;
   content: string; // 这里模拟 Show Notes 的 HTML/Markdown 内容
+  type?: 'audio' | 'video'; // 媒体类型
+  videoUrl?: string; // 视频链接 (Bilibili/Youtube)
 }
 
 export const episodes: PodcastEpisode[] = [
   {
+    slug: 'ep03-tea-master-interview',
+    title: 'Ep.03 [视频] 访谈：与制茶师老王的午后对谈',
+    date: '2024.04.20',
+    duration: '58:20',
+    excerpt: '这是我们的第一期视频节目。在景迈山的古茶园里，我和老王聊了聊什么是“时间的味道”。看视频，你能看到那天透过树叶的光。',
+    coverImage: 'https://images.unsplash.com/photo-1594493393000-039c27774c88?w=1600&q=80', // 访谈场景
+    audioUrl: 'https://cdn.pixabay.com/download/audio/2022/03/24/audio_c8c8a73467.mp3?filename=pouring-tea-10377.mp3',
+    type: 'video',
+    videoUrl: 'https://player.bilibili.com/player.html', // 占位
+    content: `
+      <h2>访谈手记</h2>
+      <p>文字无法完全传达那天下午的氛围，所以我带了摄像机。</p>
+      <p>老王是个不善言辞的人，但当他泡茶时，他的手会说话。</p>
+    `
+  },
+  {
     slug: 'ep01-hello-world',
+    type: 'audio',
     title: 'Ep.01 当程序员决定去卖茶',
     date: '2024.03.20',
     duration: '45:12',
